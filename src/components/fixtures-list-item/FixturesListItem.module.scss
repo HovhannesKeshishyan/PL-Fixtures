@@ -1,0 +1,30 @@
+.fixturesListItemWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 200px;
+  max-width: 200px;
+  align-content: flex-start;
+
+  .fixturesListItem {
+    height: 100%;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+
+    .mainTeamName {
+      color: cornflowerblue;
+      padding: 10px 15px;
+      border-bottom: 1px solid #000;
+    }
+
+    .opponentTeamName {
+      padding: 10px 15px;
+      border-bottom: 1px solid #000;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+
