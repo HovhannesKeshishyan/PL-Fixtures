@@ -17,8 +17,8 @@ function App() {
     const [teamsList, setTeamsList] = useState<Team[]>([]);
     const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
     const [fixtures, setFixtures] = useState<Fixture[]>([]);
-    const [limit, setLimit] = useState<number>(5);
-    const [competitions, setCompetitions] = useState<string | string[]>(["PL"]);
+    const [limit] = useState<number>(5);
+    const [competitions] = useState<string | string[]>(["PL"]);
 
     useEffect(() => {
         const fetchTeamsList = async () => {

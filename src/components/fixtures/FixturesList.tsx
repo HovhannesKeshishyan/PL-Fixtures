@@ -14,7 +14,7 @@ export const FixturesList: FC<Props> = ({fixtures, teamsList}) => {
         <div className={styles.fixtures}>
             <Flex gap="middle" justify="center" wrap>
                 {fixtures.map(fixture => {
-                    const teamName = teamsList.find(team => team.id === fixture.teamId)?.name!;
+                    const teamName = teamsList.find(team => team.id === fixture.teamId)?.name || "";
 
                     return <FixturesListItem fixture={fixture} teamName={teamName} key={fixture.teamId}/>
                 })}
