@@ -1,7 +1,7 @@
 import axios from "axios";
 import type {Competition, Fixture, Team} from "../types/types.ts";
 
-const BASE_URL = "https://pl-fixtures-backend.vercel.app";
+const BASE_URL = "http://localhost:4000";
 
 export const getTeamsList = async (): Promise<Team[]> => {
     const {data} = await axios.get<Team[]>(`${BASE_URL}/api/teams`);
