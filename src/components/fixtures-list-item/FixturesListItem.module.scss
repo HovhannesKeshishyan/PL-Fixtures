@@ -1,3 +1,5 @@
+@use "./../../assets/styles/colors";
+
 .fixturesListItemWrapper {
   display: flex;
   flex-direction: column;
@@ -7,15 +9,15 @@
 
   .fixturesListItem {
     height: 100%;
-    background-color: #fff;
-    color: #000;
+    background-color: colors.$white;
+    color: colors.$black;
     border-radius: 10px;
 
     .mainTeamName {
-      color: #03A9F4;
+      color: colors.$primary;
       font-size: 20px;
       padding: 10px 15px;
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid colors.$black;
     }
 
     .opponentTeamNameWrapper {
@@ -23,7 +25,7 @@
       grid-template-columns: 25px 1fr 25px;
       gap: 10px;
       padding: 10px 15px;
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid colors.$black;
       &:last-child {
         border-bottom: none;
       }

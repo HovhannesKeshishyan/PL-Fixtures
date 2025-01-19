@@ -1,6 +1,8 @@
+@use "../../assets/styles/colors";
+
 .chooseCompetition {
 
   .radioGroup {
-    color: #fff;
+    color: colors.$white;
   }
 }

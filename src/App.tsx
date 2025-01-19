@@ -8,17 +8,14 @@ import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
 
 import "./App.css";
 
-import type {Fixture, Team} from "./types/types.ts";
-import {getAllFixtures, getTeamsList} from "./api";
+import type {Team} from "./types/types.ts";
+import {getTeamsList} from "./api";
 import {Loading} from "./components/loading/Loading.tsx";
 
 function App() {
     const [loading, setLoading] = useState(false);
-    const [fixturesLoading, setFixturesLoading] = useState(false);
     const [error, setError] = useState<null | Error>(null);
     const [teamsList, setTeamsList] = useState<Team[]>([]);
-    const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
-    const [fixtures, setFixtures] = useState<Fixture[]>([]);
     const [limit] = useState<number>(5);
     const [competitions] = useState<string | string[]>(["PL"]);
 
@@ -37,46 +34,6 @@ function App() {
 
         fetchTeamsList();
     }, [])
-
-    useEffect(() => {
-        const selectedTeamsFromStorage = localStorage.getItem("selectedTeams");
-        let selectedTeamsIds: number[] = [];
-
-        if (selectedTeamsFromStorage) {
-            try {
-                selectedTeamsIds = JSON.parse(selectedTeamsFromStorage);
-            } catch (err: unknown) {
-                console.log(err);
-            }
-        }
-
-        selectedTeamsIds = selectedTeamsIds.filter(teamId => {
-            return teamsList.some(item => item.id === teamId);
-        });
-        if (selectedTeamsIds.length) {
-            setSelectedTeams(selectedTeamsIds);
-        } else {
-            setSelectedTeams([64, 57, 65]); // Default
-        }
-    }, [teamsList]);
-
-    useEffect(() => {
-        if (!selectedTeams.length) return;
-
-        const fetchFixtures = async () => {
-            setFixturesLoading(true);
-            try {
-                const fixtures: Fixture[] = await getAllFixtures(selectedTeams, limit, competitions);
-                setFixtures(fixtures);
-            } catch (err: unknown) {
-                console.log(err);
-                setError(err as Error);
-            }
-            setFixturesLoading(false);
-        }
-
-        fetchFixtures();
-    }, [selectedTeams, limit, competitions]);
 
     // const handleTeamSelect = (value: number[]) => {
     //     setSelectedTeams(value);
@@ -97,9 +54,7 @@ function App() {
             <Header/>
             {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
             {/*<SelectTeams teams={teamsList} selectedTeams={selectedTeams} onTeamSelect={handleTeamSelect}/>*/}
-            {fixtures.length > 0 &&
-                <FixturesList fixtures={fixtures} teamsList={teamsList} loading={fixturesLoading}
-                              itemsCount={selectedTeams.length}/>}
+            <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}/>
         </Flex>
     )
 }

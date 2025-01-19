@@ -18,7 +18,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName}) => {
                 width={25}
                 src={opponentTeam.crest}
             />
-            <span className={styles.opponentTeamName}>{opponentTeam.name}</span>
+            <span className={styles.opponentTeamName + " app_text-ellipsis"}>{opponentTeam.name}</span>
             <Flex align="center" justify="center" className={stadiumClassName}>{stadium}</Flex>
         </div>
     });

@@ -1,3 +1,5 @@
+@use "../../assets/styles/colors";
+
 .header {
-  color: #03A9F4;
+  color: colors.$primary;
 }
