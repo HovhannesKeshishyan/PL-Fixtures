@@ -3,16 +3,18 @@ import {Flex} from 'antd';
 
 import {Header} from "./components/header/Header.tsx";
 // import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
-import {FixturesList} from "./components/fixtures/FixturesList.tsx";
+import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
 // import {ChooseCompetitions} from "./components/choose-competitions/ChooseCompetitions.tsx";
 
 import "./App.css";
 
 import type {Fixture, Team} from "./types/types.ts";
 import {getAllFixtures, getTeamsList} from "./api";
+import {Loading} from "./components/loading/Loading.tsx";
 
 function App() {
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [fixturesLoading, setFixturesLoading] = useState(false);
     const [error, setError] = useState<null | Error>(null);
     const [teamsList, setTeamsList] = useState<Team[]>([]);
     const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
@@ -22,6 +24,7 @@ function App() {
 
     useEffect(() => {
         const fetchTeamsList = async () => {
+            setLoading(true);
             try {
                 const data: Team[] = await getTeamsList();
                 setTeamsList(data);
@@ -29,6 +32,7 @@ function App() {
                 console.log(err);
                 setError(err as Error);
             }
+            setLoading(false);
         }
 
         fetchTeamsList();
@@ -60,6 +64,7 @@ function App() {
         if (!selectedTeams.length) return;
 
         const fetchFixtures = async () => {
+            setFixturesLoading(true);
             try {
                 const fixtures: Fixture[] = await getAllFixtures(selectedTeams, limit, competitions);
                 setFixtures(fixtures);
@@ -67,6 +72,7 @@ function App() {
                 console.log(err);
                 setError(err as Error);
             }
+            setFixturesLoading(false);
         }
 
         fetchFixtures();
@@ -81,12 +87,19 @@ function App() {
         return <h1>{error.message}</h1>
     }
 
+    if (loading) {
+        return <Loading/>
+
+    }
+
     return (
         <Flex gap="middle" vertical>
             <Header/>
             {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
             {/*<SelectTeams teams={teamsList} selectedTeams={selectedTeams} onTeamSelect={handleTeamSelect}/>*/}
-            {fixtures.length > 0 && <FixturesList fixtures={fixtures} teamsList={teamsList}/>}
+            {fixtures.length > 0 &&
+                <FixturesList fixtures={fixtures} teamsList={teamsList} loading={fixturesLoading}
+                              itemsCount={selectedTeams.length}/>}
         </Flex>
     )
 }

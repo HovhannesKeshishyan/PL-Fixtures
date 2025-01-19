@@ -17,11 +17,29 @@
       border-bottom: 1px solid #000;
     }
 
-    .opponentTeamName {
+    .opponentTeamNameWrapper {
+      display: grid;
+      grid-template-columns: 1fr 25px;
       padding: 10px 15px;
       border-bottom: 1px solid #000;
       &:last-child {
         border-bottom: none;
+      }
+
+      .opponentTeamName {
+        text-align: left;
+      }
+
+      .stadium {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 100%;
+        background-color: darkseagreen;
+
+        &.awayStadium {
+          background-color: pink;
+        }
       }
     }
   }

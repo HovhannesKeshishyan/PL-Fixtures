@@ -1,6 +1,7 @@
 import {FC} from "react";
 import type {Fixture, Match, Team} from "../../types/types.ts";
 import styles from "./FixturesListItem.module.scss";
+import {Flex} from "antd";
 
 interface Props {
     fixture: Fixture;
@@ -10,8 +11,11 @@ interface Props {
 export const FixturesListItem: FC<Props> = ({fixture, teamName}) => {
     const matches = fixture.matches.map((match: Match) => {
         const opponentTeam: Team = match.homeTeam.id === fixture.teamId ? match.awayTeam : match.homeTeam;
-        return <div className={styles.opponentTeamName} key={match.id}>
-            <span>{opponentTeam.name}</span>
+        const stadium = opponentTeam.id === match.homeTeam.id ? "A" : "H";
+        const stadiumClassName = stadium === "H" ? styles.stadium : styles.stadium + " " + styles.awayStadium;
+        return <div className={styles.opponentTeamNameWrapper} key={match.id}>
+            <span className={styles.opponentTeamName}>{opponentTeam.name}</span>
+            <Flex align="center" justify="center" className={stadiumClassName}>{stadium}</Flex>
         </div>
     });
 
