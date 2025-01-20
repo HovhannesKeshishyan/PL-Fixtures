@@ -9,12 +9,21 @@
 
   .fixturesListItem {
     height: 100%;
-    background-color: colors.$white;
     color: colors.$black;
     border-radius: 10px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      background-color: colors.$white;
+    }
 
     .mainTeamName {
-      color: colors.$primary;
+      background-color: colors.$primary;
+      color: colors.$black;
+      font-weight: 700;
       font-size: 20px;
       padding: 10px 15px;
       border-bottom: 1px solid colors.$black;
