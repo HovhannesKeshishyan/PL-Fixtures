@@ -13,24 +13,30 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName}) => {
         const opponentTeam: Team = match.homeTeam.id === fixture.teamId ? match.awayTeam : match.homeTeam;
         const stadium = opponentTeam.id === match.homeTeam.id ? "A" : "H";
         const stadiumClassName = stadium === "H" ? styles.stadium : styles.stadium + " " + styles.awayStadium;
-        return <div className={styles.opponentTeamNameWrapper} key={match.id}>
+        const ariaLabel = `${opponentTeam.name} ${stadium === "H" ? "Home game" : "Away game"}`;
+        return <li className={styles.opponentTeamNameWrapper} key={match.id}>
             <Image
                 width={25}
+                height={25}
+                alt={`${opponentTeam.name} logo`}
                 src={opponentTeam.crest}
             />
-            <span className={styles.opponentTeamName + " app_text-ellipsis"}>{opponentTeam.name}</span>
-            <Flex align="center" justify="center" className={stadiumClassName}>{stadium}</Flex>
-        </div>
+            <span className={styles.opponentTeamName + " app_text-ellipsis"} tabIndex={0}
+                  aria-label={ariaLabel}>{opponentTeam.name}</span>
+            <Flex align="center" justify="center" className={stadiumClassName}>
+                <span aria-label={ariaLabel}>{stadium}</span>
+            </Flex>
+        </li>
     });
 
     return (
         <div className={styles.fixturesListItemWrapper} key={fixture.teamId}>
-            <div className={styles.fixturesListItem}>
-                <div className={styles.mainTeamName}>
-                    <span>{teamName}</span>
-                </div>
+            <ul className={styles.fixturesListItem}>
+                <li className={styles.mainTeamName}>
+                    <span tabIndex={0} aria-label={`${teamName} fixtures`}>{teamName}</span>
+                </li>
                 {matches}
-            </div>
+            </ul>
         </div>
     )
 }
