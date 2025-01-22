@@ -32,7 +32,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName}) => {
     return (
         <div className={styles.fixturesListItemWrapper} key={fixture.teamId}>
             <ul className={styles.fixturesListItem}>
-                <li className={styles.mainTeamName}>
+                <li className={styles.mainTeamName + " app_text-ellipsis"}>
                     <span tabIndex={0} aria-label={`${teamName} fixtures`}>{teamName}</span>
                 </li>
                 {matches}
