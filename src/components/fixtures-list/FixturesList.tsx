@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {LoadingOutlined} from '@ant-design/icons';
-import {Flex, Spin} from 'antd';
+import {Flex, Spin, Alert} from 'antd';
 import {FixturesListItem} from "../fixtures-list-item/FixturesListItem.tsx";
 import {getAllFixtures} from "../../api";
 import type {Fixture, Team} from "../../types/types.ts";
@@ -10,35 +10,13 @@ interface Props {
     teamsList: Team[];
     limit: number;
     competitions: string | string[];
+    selectedTeams: number[];
 }
 
-export const FixturesList: FC<Props> = ({teamsList, limit, competitions}) => {
+export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selectedTeams}) => {
     const [fixtures, setFixtures] = useState<Fixture[]>([]);
-    const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<null | Error>(null);
-
-    useEffect(() => {
-        const selectedTeamsFromStorage = localStorage.getItem("selectedTeams");
-        let selectedTeamsIds: number[] = [];
-
-        if (selectedTeamsFromStorage) {
-            try {
-                selectedTeamsIds = JSON.parse(selectedTeamsFromStorage);
-            } catch (err: unknown) {
-                console.log(err);
-            }
-        }
-
-        selectedTeamsIds = selectedTeamsIds.filter(teamId => {
-            return teamsList.some(item => item.id === teamId);
-        });
-        if (selectedTeamsIds.length) {
-            setSelectedTeams(selectedTeamsIds);
-        } else {
-            setSelectedTeams([64, 57, 65]); // Default
-        }
-    }, [teamsList]);
 
     useEffect(() => {
         if (!selectedTeams.length) return;
@@ -71,6 +49,11 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions}) => {
             </Flex>
         )
     }
+
+    if (!selectedTeams?.length) {
+        return <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+    }
+
     return (
         <div className={styles.fixtures}>
             <Flex gap="middle" justify="center" wrap>

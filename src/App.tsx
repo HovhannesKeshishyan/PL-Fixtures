@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Flex} from 'antd';
 
 import {Header} from "./components/header/Header.tsx";
-// import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
+import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
 import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
 // import {ChooseCompetitions} from "./components/choose-competitions/ChooseCompetitions.tsx";
 
@@ -16,6 +16,7 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<null | Error>(null);
     const [teamsList, setTeamsList] = useState<Team[]>([]);
+    const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
     const [limit] = useState<number>(5);
     const [competitions] = useState<string | string[]>(["PL"]);
 
@@ -35,10 +36,30 @@ function App() {
         fetchTeamsList();
     }, [])
 
-    // const handleTeamSelect = (value: number[]) => {
-    //     setSelectedTeams(value);
-    //     localStorage.setItem("selectedTeams", JSON.stringify(value));
-    // }
+    useEffect(() => {
+        const selectedTeamsFromStorage = localStorage.getItem("selectedTeams");
+        let selectedTeamsIds: number[] = [];
+
+        if (selectedTeamsFromStorage) {
+            try {
+                selectedTeamsIds = JSON.parse(selectedTeamsFromStorage);
+            } catch (err: unknown) {
+                console.log(err);
+            }
+        }
+
+        selectedTeamsIds = selectedTeamsIds.filter(teamId => {
+            return teamsList.some(item => item.id === teamId);
+        });
+        if (selectedTeamsIds.length) {
+            setSelectedTeams(selectedTeamsIds);
+        }
+    }, [teamsList]);
+
+    const handleTeamSelect = (value: number[]) => {
+        setSelectedTeams(value);
+        localStorage.setItem("selectedTeams", JSON.stringify(value));
+    }
 
     if (error) {
         return <h1>{error.message}</h1>
@@ -53,8 +74,9 @@ function App() {
         <Flex gap="middle" vertical>
             <Header/>
             {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
-            {/*<SelectTeams teams={teamsList} selectedTeams={selectedTeams} onTeamSelect={handleTeamSelect}/>*/}
-            <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}/>
+            <SelectTeams teams={teamsList} selectedTeams={selectedTeams} onTeamSelect={handleTeamSelect}/>
+            <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
+                          selectedTeams={selectedTeams}/>
         </Flex>
     )
 }
