@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Flex} from 'antd';
 
 import {Header} from "./components/header/Header.tsx";
+import {Loading} from "./components/loading/Loading.tsx";
 import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
 import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
 // import {ChooseCompetitions} from "./components/choose-competitions/ChooseCompetitions.tsx";
@@ -10,7 +11,6 @@ import "./App.css";
 
 import type {Team} from "./types/types.ts";
 import {getTeamsList} from "./api";
-import {Loading} from "./components/loading/Loading.tsx";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -65,18 +65,14 @@ function App() {
         return <h1>{error.message}</h1>
     }
 
-    if (loading) {
-        return <Loading/>
-
-    }
-
     return (
         <Flex gap="middle" vertical>
             <Header/>
             {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
-            <SelectTeams teams={teamsList} selectedTeams={selectedTeams} onTeamSelect={handleTeamSelect}/>
-            <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
-                          selectedTeams={selectedTeams}/>
+            <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
+                         onTeamSelect={handleTeamSelect}/>
+            {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
+                                                  selectedTeams={selectedTeams}/>}
         </Flex>
     )
 }
