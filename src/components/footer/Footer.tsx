@@ -40,7 +40,7 @@ export const Footer: FC = () => {
                 <ul className={styles.socialMedia}>
                     {socialLinks.map(item => {
                         return (
-                            <li>
+                            <li key={item.name}>
                                 <a href={item.href}
                                    target="_blank"
                                    aria-label={`${item.name} link`}
