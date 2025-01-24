@@ -1,13 +1,16 @@
 import {useEffect, useState} from "react";
-import {Flex} from 'antd';
+import {Flex} from "antd";
+
+import {MainLayout} from "./layouts/MainLayout.tsx";
 
 import {Header} from "./components/header/Header.tsx";
+import {Footer} from "./components/footer/Footer.tsx";
 import {Loading} from "./components/loading/Loading.tsx";
 import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
 import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
 // import {ChooseCompetitions} from "./components/choose-competitions/ChooseCompetitions.tsx";
 
-import "./App.css";
+import "./App.scss";
 
 import type {Team} from "./types/types.ts";
 import {getTeamsList} from "./api";
@@ -66,14 +69,19 @@ function App() {
     }
 
     return (
-        <Flex gap="middle" vertical>
+        <MainLayout>
             <Header/>
-            {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
-            <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
-                         onTeamSelect={handleTeamSelect}/>
-            {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
-                                                  selectedTeams={selectedTeams}/>}
-        </Flex>
+
+            <Flex vertical gap="large">
+                {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
+                <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
+                             onTeamSelect={handleTeamSelect}/>
+                {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
+                                                      selectedTeams={selectedTeams}/>}
+            </Flex>
+
+            <Footer/>
+        </MainLayout>
     )
 }
 
