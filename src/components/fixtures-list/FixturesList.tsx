@@ -56,7 +56,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
 
     return (
         <div className={styles.fixtures}>
-            <Flex gap="middle" justify="center" wrap>
+            <Flex gap="large" justify="center" wrap>
                 {selectedTeams.map(teamId => {
                     const teamName = teamsList.find(team => team.id === teamId)?.name || "";
                     const fixture = cachedFixtures[teamId];

@@ -3,37 +3,44 @@
 .fixturesListItemWrapper {
   display: flex;
   flex-direction: column;
-  flex: 1 0 200px;
-  max-width: 400px;
+  flex: 1 0 20rem;
+  max-width: 40rem;
   align-content: flex-start;
 
   .fixturesListItem {
     height: 100%;
     color: colors.$black;
-    border-radius: 10px;
+    border-radius: 1rem;
     overflow: hidden;
     margin: 0;
     padding: 0;
+    transition: scale .3s;
+
+    &:hover,
+    &:focus-visible {
+      scale: 1.1;
+    }
 
     li {
       list-style: none;
       background-color: colors.$white;
+      font-size: 1.8rem;
     }
 
     .mainTeamName {
       background-color: colors.$primary;
       color: colors.$black;
       font-weight: 700;
-      font-size: 20px;
-      padding: 10px 15px;
+      font-size: 2rem;
+      padding: 1rem 1.5rem;
       border-bottom: 1px solid colors.$black;
     }
 
     .opponentTeamNameWrapper {
       display: grid;
-      grid-template-columns: 25px 1fr 25px;
-      gap: 10px;
-      padding: 10px 15px;
+      grid-template-columns: 2.5rem 1fr 2.5rem;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
       border-bottom: 1px solid colors.$black;
 
       &:last-child {
@@ -45,9 +52,9 @@
       }
 
       .stadium {
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
         border-radius: 100%;
         background-color: darkseagreen;
 
@@ -60,7 +67,7 @@
 
   .skeletonWrapper {
     background-color: colors.$white;
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     height: 100%;
   }
 }
