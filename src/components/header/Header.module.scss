@@ -1,5 +1,15 @@
 @use "../../assets/styles/colors";
 
 .header {
-  color: colors.$primary;
+  padding-top: 2rem;
+
+  h1 {
+    color: colors.$primary;
+    font-size: 4rem;
+
+    @media screen and (max-width: 480px) {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
 }
