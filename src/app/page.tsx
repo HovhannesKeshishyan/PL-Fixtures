@@ -1,19 +1,15 @@
+"use client"
 import {useEffect, useState} from "react";
 import {Flex} from "antd";
 
-import {MainLayout} from "./layouts/MainLayout.tsx";
 
-import {Header} from "./components/header/Header.tsx";
-import {Footer} from "./components/footer/Footer.tsx";
-import {Loading} from "./components/loading/Loading.tsx";
-import {SelectTeams} from "./components/select-teams/SelectTeams.tsx";
-import {FixturesList} from "./components/fixtures-list/FixturesList.tsx";
-// import {ChooseCompetitions} from "./components/choose-competitions/ChooseCompetitions.tsx";
-
-import "./App.scss";
-
-import type {Team} from "./types/types.ts";
-import {getTeamsList} from "./api";
+import type {Team} from "@/types/types";
+import {getTeamsList} from "@/services";
+import {Header} from "@/app/components/header/Header";
+import {SelectTeams} from "@/app/components/select-teams/SelectTeams";
+import {Loading} from "@/app/components/loading/Loading";
+import {Footer} from "@/app/components/footer/Footer";
+import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -69,7 +65,7 @@ function App() {
     }
 
     return (
-        <MainLayout>
+        <>
             <Header/>
 
             <Flex vertical gap="large">
@@ -81,7 +77,7 @@ function App() {
             </Flex>
 
             <Footer/>
-        </MainLayout>
+        </>
     )
 }
 

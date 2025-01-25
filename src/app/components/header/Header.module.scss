@@ -1,7 +1,8 @@
-@use "../../assets/styles/colors";
+@use "@/app/assets/styles/colors";
 
 .header {
   padding-top: 2rem;
+  text-align: center;
 
   h1 {
     color: colors.$primary;
