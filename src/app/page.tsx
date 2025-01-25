@@ -1,14 +1,10 @@
 "use client"
 import {useEffect, useState} from "react";
 import {Flex} from "antd";
-
-
 import type {Team} from "@/types/types";
 import {getTeamsList} from "@/services";
-import {Header} from "@/app/components/header/Header";
 import {SelectTeams} from "@/app/components/select-teams/SelectTeams";
 import {Loading} from "@/app/components/loading/Loading";
-import {Footer} from "@/app/components/footer/Footer";
 import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
 
 function App() {
@@ -65,19 +61,13 @@ function App() {
     }
 
     return (
-        <>
-            <Header/>
-
-            <Flex vertical gap="large">
-                {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
-                <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
-                             onTeamSelect={handleTeamSelect}/>
-                {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
-                                                      selectedTeams={selectedTeams}/>}
-            </Flex>
-
-            <Footer/>
-        </>
+        <Flex vertical gap="large">
+            {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
+            <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
+                         onTeamSelect={handleTeamSelect}/>
+            {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
+                                                  selectedTeams={selectedTeams}/>}
+        </Flex>
     )
 }
 

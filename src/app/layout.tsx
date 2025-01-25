@@ -3,6 +3,9 @@ import {Inter} from "next/font/google";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import {ReactNode} from "react";
+import {Header} from "@/app/components/header/Header";
+import {Footer} from "@/app/components/footer/Footer";
+import {AntdRegistry} from "@ant-design/nextjs-registry";
 
 const inter = Inter({
     variable: "--font-inter-sans",
@@ -30,7 +33,9 @@ export default function RootLayout({children}: Props) {
         <html lang="en">
         <body className={inter.variable}>
         <div className={styles.mainLayout}>
-            {children}
+            <Header/>
+            <AntdRegistry>{children}</AntdRegistry>
+            <Footer/>
         </div>
         </body>
         </html>
