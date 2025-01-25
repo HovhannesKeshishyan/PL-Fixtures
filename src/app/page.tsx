@@ -62,7 +62,6 @@ function App() {
 
     return (
         <Flex vertical gap="large">
-            {/*<ChooseCompetitions onChange={setCompetitions}/>*/}
             <SelectTeams teams={teamsList} loading={loading} selectedTeams={selectedTeams}
                          onTeamSelect={handleTeamSelect}/>
             {loading ? <Loading/> : <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
