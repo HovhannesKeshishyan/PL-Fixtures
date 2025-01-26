@@ -27,6 +27,7 @@ export const SelectTeams: FC<Props> = ({teams, selectedTeams, loading, onTeamSel
                     return optionValue.startsWith(inputValue.toLowerCase());
                 }
                 }
+                aria-label="search team"
             >
                 {teams.map(team => {
                     return <Select.Option value={team.id} key={team.id}
