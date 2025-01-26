@@ -12,7 +12,7 @@ Hovhannes Keshishyan
 ### Technologies
 
 ```
-# React, TypeScript, Vite, SCSS
+# React, Next.js, TypeScript, Vite, SCSS
 ```
 
 ## For Backend configuration

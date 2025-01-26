@@ -1,4 +1,6 @@
 .mainLayout {
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-gap: 2rem;

@@ -1,5 +1,5 @@
 import {FC, type ReactElement} from "react";
-import type {Fixture, Match, Team} from "../../types/types.ts";
+import type {Fixture, Match, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
 import {Flex, Image, Skeleton} from "antd";
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
-    let matches: ReactElement | ReactElement[] = [];
+    let matches: ReactElement | ReactElement[];
     if (isLoading) {
         matches = <div className={styles.skeletonWrapper}>
             <Skeleton active/>
