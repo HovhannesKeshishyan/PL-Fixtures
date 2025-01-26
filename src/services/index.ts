@@ -3,7 +3,7 @@ import type {Competition, Fixture, Team} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
-const BASE_URL = process.env.MODE === "production" ? BASE_URL_PROD : BASE_URL_DEV;
+const BASE_URL = process.env.NEXT_PUBLIC_MODE === "production" ? BASE_URL_PROD : BASE_URL_DEV;
 
 export const getTeamsList = async (): Promise<Team[]> => {
     const {data} = await axios.get<Team[]>(`${BASE_URL}/api/teams`);
