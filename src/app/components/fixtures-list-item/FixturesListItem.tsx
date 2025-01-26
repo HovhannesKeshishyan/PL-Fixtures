@@ -1,7 +1,8 @@
 import {FC, type ReactElement} from "react";
 import type {Fixture, Match, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
-import {Flex, Image, Skeleton} from "antd";
+import Image from "next/image";
+import {Flex, Skeleton} from "antd";
 
 interface Props {
     fixture: Fixture;
