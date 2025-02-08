@@ -1,4 +1,5 @@
 import {cookies} from "next/headers";
+import {WithErrorBoundary} from "@/app/components/error-boundary/WithErrorBoundary";
 import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
 import type {Team} from "@/types/types";
 import {getTeamsList} from "@/services";
@@ -28,7 +29,9 @@ async function App() {
     const selectedTeamIds = await getSelectedTeamIds();
 
     return (
-        <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds}/>
+        <WithErrorBoundary>
+            <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds}/>
+        </WithErrorBoundary>
     )
 }
 
