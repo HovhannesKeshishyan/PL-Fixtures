@@ -6,18 +6,15 @@ import type {Team} from "@/types/types.ts";
 interface Props {
     teams: Team[];
     selectedTeams: number[];
-    loading: boolean;
     onTeamSelect: (value: number[]) => void;
 }
 
-export const SelectTeams: FC<Props> = ({teams, selectedTeams, loading, onTeamSelect}) => {
+export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => {
     return (
         <div className={styles.selectTeams}>
             <Select
                 className={styles.antSelect}
                 mode="multiple"
-                loading={loading}
-                disabled={loading}
                 allowClear
                 value={selectedTeams}
                 placeholder="Please select"
