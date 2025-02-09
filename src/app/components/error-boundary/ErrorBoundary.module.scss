@@ -1,0 +1,8 @@
+.title {
+  min-width: 40rem;
+
+  @media screen and (max-width: 480px) {
+    min-width: unset;
+    width: 80%
+  }
+}

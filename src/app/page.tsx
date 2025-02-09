@@ -1,5 +1,6 @@
 import {cookies} from "next/headers";
 import {CookieBanner} from "@/app/components/cookie-banner/CookieBanner";
+import {WithErrorBoundary} from "@/app/components/error-boundary/WithErrorBoundary";
 import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
 import type {Team} from "@/types/types";
 import {getTeamsList} from "@/services";
@@ -36,6 +37,9 @@ async function App() {
 
     return (
         <>
+            <WithErrorBoundary>
+                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds}/>
+            </WithErrorBoundary>
             <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
             {!cookiesAccepted && <CookieBanner/>}
         </>
