@@ -2,12 +2,12 @@ import {FC, useEffect, useMemo, useState} from "react";
 import {Flex, Alert} from 'antd';
 import {FixturesListItem} from "@/app/components/fixtures-list-item/FixturesListItem";
 import {getAllFixtures} from "@/services";
-import type {Fixture, Team} from "@/types/types.ts";
+import type {Fixture, FixturesLimit, Team} from "@/types/types.ts";
 import styles from "./Fixtures.module.scss";
 
 interface Props {
     teamsList: Team[];
-    limit: number;
+    limit: FixturesLimit;
     competitions: string | string[];
     selectedTeams: number[];
 }
@@ -18,12 +18,19 @@ interface CachedFixtures {
 
 export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selectedTeams}) => {
     const [cachedFixtures, setCachedFixtures] = useState<CachedFixtures>({});
+    const [limitIsChanged, setLimitIsChanged] = useState<boolean>(false);
     const [error, setError] = useState<null | Error>(null);
 
     // when new team is selected, and there is no cached data
     const newAddedTeams: number[] = useMemo(() => {
         return selectedTeams.filter(teamId => !cachedFixtures[teamId])
     }, [cachedFixtures, selectedTeams])
+
+    const needFetchAgain = !!newAddedTeams.length || limitIsChanged;
+
+    useEffect(() => {
+        setLimitIsChanged(true);
+    }, [limit]);
 
     useEffect(() => {
         if (!selectedTeams.length) return;
@@ -43,8 +50,8 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
         }
 
         // fetch only if new team is selected
-        if (newAddedTeams.length) fetchFixtures();
-    }, [newAddedTeams, selectedTeams, limit, competitions]);
+        if (needFetchAgain) fetchFixtures();
+    }, [needFetchAgain, selectedTeams, limit, competitions]);
 
     if (error) {
         return <h1>{error.message}</h1>
