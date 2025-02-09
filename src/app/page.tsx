@@ -1,4 +1,5 @@
 import {cookies} from "next/headers";
+import {CookieBanner} from "@/app/components/cookie-banner/CookieBanner";
 import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
 import type {Team} from "@/types/types";
 import {getTeamsList} from "@/services";
@@ -23,12 +24,21 @@ const getSelectedTeamIds = async () => {
     return selectedTeamIds;
 }
 
+const cookiesIsAccepted = async () => {
+    const cookiesList = await cookies();
+    return !!cookiesList.get("cookiesAccepted");
+}
+
 async function App() {
     const teamsList = await fetchTeamsList();
     const selectedTeamIds = await getSelectedTeamIds();
+    const cookiesAccepted = await cookiesIsAccepted();
 
     return (
-        <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds}/>
+        <>
+            <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
+            {!cookiesAccepted && <CookieBanner/>}
+        </>
     )
 }
 

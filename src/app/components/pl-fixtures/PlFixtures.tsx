@@ -9,16 +9,19 @@ import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
 interface Props {
     teamsList: Team[];
     selectedTeamIds: number[];
+    cookiesAccepted: boolean;
 }
 
-function PlFixtures({teamsList, selectedTeamIds}: Props) {
+function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted}: Props) {
     const [selectedTeams, setSelectedTeams] = useState<number[]>(selectedTeamIds);
     const [limit] = useState<number>(5);
     const [competitions] = useState<string | string[]>(["PL"]);
 
     const handleTeamSelect = (value: number[]) => {
         setSelectedTeams(value);
-        Cookies.set("selectedTeams", JSON.stringify(value));
+        if (cookiesAccepted) {
+            Cookies.set("selectedTeams", JSON.stringify(value), {expires: 365});
+        }
     }
 
     return (
