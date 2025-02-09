@@ -38,9 +38,9 @@ async function App() {
     return (
         <>
             <WithErrorBoundary>
-                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds}/>
+                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
             </WithErrorBoundary>
-            <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
+
             {!cookiesAccepted && <CookieBanner/>}
         </>
     )
