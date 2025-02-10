@@ -28,7 +28,9 @@ function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted, limit}: Props)
 
     const handleLimitChange = (value: FixturesLimit) => {
         setFixturesLimit(value);
-        Cookies.set("limit", value + "");
+        if (cookiesAccepted) {
+            Cookies.set("limit", value + "");
+        }
     }
 
     return (
