@@ -46,8 +46,7 @@ async function App() {
     return (
         <>
             <WithErrorBoundary>
-                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}
-                            limit={limit}/>
+                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} limit={limit}/>
             </WithErrorBoundary>
 
             {!cookiesAccepted && <CookieBanner/>}

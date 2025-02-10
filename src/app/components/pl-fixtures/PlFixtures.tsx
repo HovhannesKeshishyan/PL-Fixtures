@@ -11,24 +11,27 @@ interface Props {
     teamsList: Team[];
     selectedTeamIds: number[];
     limit: FixturesLimit;
-    cookiesAccepted: boolean;
 }
 
-function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted, limit}: Props) {
+function PlFixtures({teamsList, selectedTeamIds, limit}: Props) {
     const [selectedTeams, setSelectedTeams] = useState<number[]>(selectedTeamIds);
     const [fixturesLimit, setFixturesLimit] = useState<FixturesLimit>(limit);
     const [competitions] = useState<string | string[]>(["PL"]);
 
+    const cookiesAccepted = () => {
+        return Cookies.get("cookiesAccepted") === "true";
+    }
+
     const handleTeamSelect = (value: number[]) => {
         setSelectedTeams(value);
-        if (cookiesAccepted) {
+        if (cookiesAccepted()) {
             Cookies.set("selectedTeams", JSON.stringify(value), {expires: 365});
         }
     }
 
     const handleLimitChange = (value: FixturesLimit) => {
         setFixturesLimit(value);
-        if (cookiesAccepted) {
+        if (cookiesAccepted()) {
             Cookies.set("limit", value + "");
         }
     }
