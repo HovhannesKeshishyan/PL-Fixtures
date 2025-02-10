@@ -18,7 +18,7 @@ interface CachedFixtures {
 
 export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selectedTeams}) => {
     const [cachedFixtures, setCachedFixtures] = useState<CachedFixtures>({});
-    const [limitIsChanged, setLimitIsChanged] = useState<boolean>(false);
+    const [limitLastValue, setLimitLastValue] = useState<FixturesLimit>(limit);
     const [error, setError] = useState<null | Error>(null);
 
     // when new team is selected, and there is no cached data
@@ -26,11 +26,9 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
         return selectedTeams.filter(teamId => !cachedFixtures[teamId])
     }, [cachedFixtures, selectedTeams])
 
-    const needFetchAgain = !!newAddedTeams.length || limitIsChanged;
+    const limitIsChanged = limit !== limitLastValue;
 
-    useEffect(() => {
-        setLimitIsChanged(true);
-    }, [limit]);
+    const needFetchAgain = !!newAddedTeams.length || limitIsChanged;
 
     useEffect(() => {
         if (!selectedTeams.length) return;
@@ -43,7 +41,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
                     newValue[item.teamId] = item;
                 })
                 setCachedFixtures(newValue);
-                setLimitIsChanged(false);
+                setLimitLastValue(limit);
             } catch (err: unknown) {
                 console.log(err);
                 setError(err as Error);
