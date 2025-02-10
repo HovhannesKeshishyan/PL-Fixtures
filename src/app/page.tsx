@@ -44,12 +44,10 @@ async function App() {
     const cookiesAccepted = await cookiesIsAccepted();
 
     return (
-        <WithErrorBoundary>
-            <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} limit={limit}/>
-        </WithErrorBoundary>
         <>
             <WithErrorBoundary>
-                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
+                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}
+                            limit={limit}/>
             </WithErrorBoundary>
 
             {!cookiesAccepted && <CookieBanner/>}
