@@ -1,4 +1,5 @@
 import {cookies} from "next/headers";
+import {CookieBanner} from "@/app/components/cookie-banner/CookieBanner";
 import {WithErrorBoundary} from "@/app/components/error-boundary/WithErrorBoundary";
 import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
 import type {FixturesLimit, Team} from "@/types/types";
@@ -24,6 +25,11 @@ const getSelectedTeamIds = async () => {
     return selectedTeamIds;
 }
 
+const cookiesIsAccepted = async () => {
+    const cookiesList = await cookies();
+    return !!cookiesList.get("cookiesAccepted");
+}
+
 const getFixturesLimit = async () => {
     const cookiesList = await cookies();
     const limit = cookiesList.get("limit")?.value;
@@ -35,11 +41,19 @@ async function App() {
     const teamsList = await fetchTeamsList();
     const selectedTeamIds = await getSelectedTeamIds();
     const limit = await getFixturesLimit();
+    const cookiesAccepted = await cookiesIsAccepted();
 
     return (
         <WithErrorBoundary>
             <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} limit={limit}/>
         </WithErrorBoundary>
+        <>
+            <WithErrorBoundary>
+                <PlFixtures teamsList={teamsList} selectedTeamIds={selectedTeamIds} cookiesAccepted={cookiesAccepted}/>
+            </WithErrorBoundary>
+
+            {!cookiesAccepted && <CookieBanner/>}
+        </>
     )
 }
 

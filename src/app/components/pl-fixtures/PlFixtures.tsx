@@ -11,16 +11,19 @@ interface Props {
     teamsList: Team[];
     selectedTeamIds: number[];
     limit: FixturesLimit;
+    cookiesAccepted: boolean;
 }
 
-function PlFixtures({teamsList, selectedTeamIds, limit}: Props) {
+function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted, limit}: Props) {
     const [selectedTeams, setSelectedTeams] = useState<number[]>(selectedTeamIds);
     const [fixturesLimit, setFixturesLimit] = useState<FixturesLimit>(limit);
     const [competitions] = useState<string | string[]>(["PL"]);
 
     const handleTeamSelect = (value: number[]) => {
         setSelectedTeams(value);
-        Cookies.set("selectedTeams", JSON.stringify(value));
+        if (cookiesAccepted) {
+            Cookies.set("selectedTeams", JSON.stringify(value), {expires: 365});
+        }
     }
 
     const handleLimitChange = (value: FixturesLimit) => {
