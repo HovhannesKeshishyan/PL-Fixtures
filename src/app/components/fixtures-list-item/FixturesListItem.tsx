@@ -3,6 +3,7 @@ import type {Fixture, Match, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
 import Image from "next/image";
 import {Flex, Skeleton} from "antd";
+import {FixturesListItemDate} from "@/app/components/fixtures-list-item-date/FixturesListItemDate";
 
 interface Props {
     fixture: Fixture;
@@ -35,6 +36,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
                 <span className={styles.opponentTeamName + " app_text-ellipsis"}>
                     {opponentTeam.name}
                 </span>
+                <FixturesListItemDate utcDate={match.utcDate}/>
                 <Flex align="center" justify="center" className={stadiumClassName}>
                     <span aria-label={ariaLabel}>{stadium}</span>
                 </Flex>
