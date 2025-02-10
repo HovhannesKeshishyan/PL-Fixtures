@@ -43,6 +43,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
                     newValue[item.teamId] = item;
                 })
                 setCachedFixtures(newValue);
+                setLimitIsChanged(false);
             } catch (err: unknown) {
                 console.log(err);
                 setError(err as Error);
@@ -58,7 +59,11 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
     }
 
     if (!selectedTeams?.length) {
-        return <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+        return(
+            <div className={styles.emptyResultsWrapper}>
+                <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+            </div>
+        )
     }
 
     return (
