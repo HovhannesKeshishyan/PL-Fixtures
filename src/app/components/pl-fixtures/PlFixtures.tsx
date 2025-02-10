@@ -2,19 +2,21 @@
 import Cookies from 'js-cookie';
 import {useState} from "react";
 import {Flex} from "antd";
-import type {Team} from "@/types/types";
+import type {FixturesLimit, Team} from "@/types/types";
 import {SelectTeams} from "@/app/components/select-teams/SelectTeams";
 import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
+import {SelectLimit} from "@/app/components/select-limit/SelectLimit";
 
 interface Props {
     teamsList: Team[];
     selectedTeamIds: number[];
+    limit: FixturesLimit;
     cookiesAccepted: boolean;
 }
 
-function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted}: Props) {
+function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted, limit}: Props) {
     const [selectedTeams, setSelectedTeams] = useState<number[]>(selectedTeamIds);
-    const [limit] = useState<number>(5);
+    const [fixturesLimit, setFixturesLimit] = useState<FixturesLimit>(limit);
     const [competitions] = useState<string | string[]>(["PL"]);
 
     const handleTeamSelect = (value: number[]) => {
@@ -24,11 +26,21 @@ function PlFixtures({teamsList, selectedTeamIds, cookiesAccepted}: Props) {
         }
     }
 
+    const handleLimitChange = (value: FixturesLimit) => {
+        setFixturesLimit(value);
+        if (cookiesAccepted) {
+            Cookies.set("limit", value + "");
+        }
+    }
+
     return (
         <Flex vertical gap="large">
-            <SelectTeams teams={teamsList} selectedTeams={selectedTeams}
-                         onTeamSelect={handleTeamSelect}/>
-            <FixturesList teamsList={teamsList} competitions={competitions} limit={limit}
+            <Flex gap={10} vertical>
+                <SelectTeams teams={teamsList} selectedTeams={selectedTeams}
+                             onTeamSelect={handleTeamSelect}/>
+                <SelectLimit limit={fixturesLimit} onLimitChange={handleLimitChange}/>
+            </Flex>
+            <FixturesList teamsList={teamsList} competitions={competitions} limit={fixturesLimit}
                           selectedTeams={selectedTeams}/>
         </Flex>
     )

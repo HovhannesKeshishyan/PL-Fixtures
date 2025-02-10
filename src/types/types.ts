@@ -22,3 +22,5 @@ export interface Fixture {
 export interface Competition {
     [key: string]: string;
 }
+
+export type FixturesLimit = "all" | "5" | "10" | "15";

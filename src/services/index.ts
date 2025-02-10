@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {Competition, Fixture, Team} from "@/types/types";
+import type {Competition, Fixture, FixturesLimit, Team} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
@@ -10,7 +10,7 @@ export const getTeamsList = async (): Promise<Team[]> => {
     return data;
 }
 
-export const getAllFixtures = async (teamIds: number[], limit: number, competitions: string | string[]): Promise<Fixture[]> => {
+export const getAllFixtures = async (teamIds: number[], limit: FixturesLimit, competitions: string | string[]): Promise<Fixture[]> => {
     const payload = {
         ids: teamIds,
         limit,

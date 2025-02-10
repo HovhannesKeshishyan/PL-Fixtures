@@ -2,12 +2,12 @@ import {FC, useEffect, useMemo, useState} from "react";
 import {Flex, Alert} from 'antd';
 import {FixturesListItem} from "@/app/components/fixtures-list-item/FixturesListItem";
 import {getAllFixtures} from "@/services";
-import type {Fixture, Team} from "@/types/types.ts";
+import type {Fixture, FixturesLimit, Team} from "@/types/types.ts";
 import styles from "./Fixtures.module.scss";
 
 interface Props {
     teamsList: Team[];
-    limit: number;
+    limit: FixturesLimit;
     competitions: string | string[];
     selectedTeams: number[];
 }
@@ -18,12 +18,17 @@ interface CachedFixtures {
 
 export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selectedTeams}) => {
     const [cachedFixtures, setCachedFixtures] = useState<CachedFixtures>({});
+    const [limitLastValue, setLimitLastValue] = useState<FixturesLimit>(limit);
     const [error, setError] = useState<null | Error>(null);
 
     // when new team is selected, and there is no cached data
     const newAddedTeams: number[] = useMemo(() => {
         return selectedTeams.filter(teamId => !cachedFixtures[teamId])
     }, [cachedFixtures, selectedTeams])
+
+    const limitIsChanged = limit !== limitLastValue;
+
+    const needFetchAgain = !!newAddedTeams.length || limitIsChanged;
 
     useEffect(() => {
         if (!selectedTeams.length) return;
@@ -36,6 +41,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
                     newValue[item.teamId] = item;
                 })
                 setCachedFixtures(newValue);
+                setLimitLastValue(limit);
             } catch (err: unknown) {
                 console.log(err);
                 setError(err as Error);
@@ -43,15 +49,19 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
         }
 
         // fetch only if new team is selected
-        if (newAddedTeams.length) fetchFixtures();
-    }, [newAddedTeams, selectedTeams, limit, competitions]);
+        if (needFetchAgain) fetchFixtures();
+    }, [needFetchAgain, selectedTeams, limit, competitions]);
 
     if (error) {
         return <h1>{error.message}</h1>
     }
 
     if (!selectedTeams?.length) {
-        return <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+        return(
+            <div className={styles.emptyResultsWrapper}>
+                <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+            </div>
+        )
     }
 
     return (
