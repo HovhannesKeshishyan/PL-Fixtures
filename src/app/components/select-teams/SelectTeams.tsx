@@ -20,7 +20,7 @@ export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => 
                 placeholder="Please select"
                 onChange={onTeamSelect}
                 filterOption={(inputValue, option) => {
-                    const optionValue: string = option?.['data-search-value'].toLowerCase();
+                    const optionValue: string = option?.["data-search-value"].toLowerCase();
                     return optionValue.startsWith(inputValue.toLowerCase());
                 }
                 }

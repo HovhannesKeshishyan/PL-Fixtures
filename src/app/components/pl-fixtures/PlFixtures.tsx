@@ -1,5 +1,5 @@
 "use client"
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import {useState} from "react";
 import {Flex} from "antd";
 import type {FixturesLimit, Team} from "@/types/types";
