@@ -14,7 +14,8 @@ const eslintConfig = [
     {
         rules: {
             "quotes": ["error", "double", {avoidEscape: true}],
-            camelcase: ["error"],
+            "camelcase": ["error"],
+            "no-multiple-empty-lines": "error",
         },
     }
 ];
