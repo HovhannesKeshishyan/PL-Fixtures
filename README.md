@@ -17,7 +17,7 @@ Hovhannes Keshishyan
 
 ## For Backend configuration
 
-### Copy Backend project from Git repo [github.com/Hovhannes1991/PL-Fixtures-Backend](https://github.com/Hovhannes1991/PL-Fixtures-Backend)
+### Copy Backend project from Git repo [github.com/HovhannesKeshishyan/PL-Fixtures-Backend](https://github.com/HovhannesKeshishyan/PL-Fixtures-Backend)
 ### Config project as described in README.MD file and run server
 
 ## Project setup
@@ -45,4 +45,4 @@ npm run build
 
 ### Github URL
 
-[github.com/Hovhannes1991/PL-Fixtures](https://github.com/Hovhannes1991/PL-Fixtures)
+[github.com/HovhannesKeshishyan/PL-Fixtures](https://github.com/HovhannesKeshishyan/PL-Fixtures)
