@@ -17,11 +17,25 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-    title: "Premier League Fixtures",
-    description: "Premier league top teams las fixtures",
+    title: "Premier League Fixtures & Schedule | Latest EPL Matches",
+    description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
     robots: "index, follow",
     authors: [{name: "HK"}],
-    keywords: "Football, Premier League, Fixtures, Table, England Premier League"
+    keywords: "Premier League fixtures, EPL schedule, football matches, matchday",
+    openGraph: {
+        title: "Premier League Fixtures & Schedule | Latest EPL Matches",
+        description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
+        type: "website",
+        url: "https://pl-fixtures.vercel.app",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Premier League Fixtures",
+            },
+        ],
+    },
 };
 
 interface Props {
