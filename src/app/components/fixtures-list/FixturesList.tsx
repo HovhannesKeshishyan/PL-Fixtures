@@ -1,5 +1,5 @@
 import {FC, useEffect, useMemo, useState} from "react";
-import {Flex, Alert} from 'antd';
+import {Flex, Alert} from "antd";
 import {FixturesListItem} from "@/app/components/fixtures-list-item/FixturesListItem";
 import {getAllFixtures} from "@/services";
 import type {Fixture, FixturesLimit, Team} from "@/types/types.ts";

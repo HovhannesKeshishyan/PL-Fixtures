@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import styles from "./CookieBanner.module.scss";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import {Button, Flex} from "antd";
 
 export const CookieBanner = () => {
