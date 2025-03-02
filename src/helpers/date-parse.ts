@@ -2,14 +2,14 @@ import type {DateTimeFormatOptions} from "@/types/types";
 
 
 const dateFormat: Readonly<DateTimeFormatOptions> = {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
 }
 
 const timeFormat: Readonly<DateTimeFormatOptions> = {
-    hour: '2-digit',
-    minute: '2-digit',
+    hour: "2-digit",
+    minute: "2-digit",
     hour12: false
 }
 
@@ -23,9 +23,9 @@ export const utcDateToLocal = (utcDate: string, todayLabel: string | false = "To
     const localDate = new Date(utcDate);
     const today = new Date();
 
-    let formattedDate = localDate.toLocaleDateString('en-GB', dateFormat);
+    let formattedDate = localDate.toLocaleDateString("en-GB", dateFormat);
 
-    const formattedTime = localDate.toLocaleTimeString('en-GB', timeFormat);
+    const formattedTime = localDate.toLocaleTimeString("en-GB", timeFormat);
 
     if (todayLabel && isTodayDate(localDate, today)) {
         formattedDate = todayLabel
