@@ -36,6 +36,12 @@ export const metadata: Metadata = {
             },
         ],
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "Premier League Fixtures & Schedule | Latest EPL Matches",
+        description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
+        images: ["https://premierleague-fixtures.vercel.app/og-image.png"],
+    },
 };
 
 interface Props {
