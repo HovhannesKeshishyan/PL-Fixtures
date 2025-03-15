@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: "/private/",
         },
-        sitemap: "https://premierleague.vercel.app/sitemap.xml",
+        sitemap: "https://premierleague-fixtures.vercel.app/sitemap.xml",
     }
 }
