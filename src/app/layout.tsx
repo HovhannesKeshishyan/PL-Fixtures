@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         title: "Premier League Fixtures & Schedule | Latest EPL Matches",
         description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
         type: "website",
-        url: "https://pl-fixtures.vercel.app",
+        url: "https://premierleague-fixtures.vercel.app",
         images: [
             {
                 url: "/og-image.png",
