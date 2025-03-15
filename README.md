@@ -40,7 +40,7 @@ npm run build
 
 ### Live Demo
 
-[premierleague.vercel.app/](https://premierleague.vercel.app/)
+[premierleague-fixtures.vercel.app/](https://premierleague-fixtures.vercel.app/)
 
 
 ### Github URL
