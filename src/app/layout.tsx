@@ -1,11 +1,15 @@
 import type {Metadata, Viewport} from "next";
+import type {ReactNode} from "react";
+
 import {Inter} from "next/font/google";
 import "./globals.scss";
 import styles from "./layout.module.scss";
-import {ReactNode} from "react";
+
 import {Header} from "@/app/components/header/Header";
 import {Footer} from "@/app/components/footer/Footer";
 import {AntdRegistry} from "@ant-design/nextjs-registry";
+
+import {siteUrl, metaTitle, metaDescription} from "@/constants/metadata";
 
 const inter = Inter({
     variable: "--font-inter-sans",
@@ -17,16 +21,16 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-    title: "Premier League Fixtures & Schedule | Latest EPL Matches",
-    description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
+    title: metaTitle,
+    description: metaDescription,
     robots: "index, follow",
     authors: [{name: "HK"}],
     keywords: "Premier League fixtures, EPL schedule, football matches, matchday",
     openGraph: {
-        title: "Premier League Fixtures & Schedule | Latest EPL Matches",
-        description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
+        title: metaTitle,
+        description: metaDescription,
         type: "website",
-        url: "https://premierleague-fixtures.vercel.app",
+        url: siteUrl,
         images: [
             {
                 url: "/og-image.png",
@@ -38,9 +42,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Premier League Fixtures & Schedule | Latest EPL Matches",
-        description: "Get the latest Premier League fixtures, match schedules. Stay updated with the English Premier League's latest games.",
-        images: ["https://premierleague-fixtures.vercel.app/og-image.png"],
+        title: metaTitle,
+        description: metaDescription,
+        images: [`${siteUrl}/og-image.png`],
     },
 };
 
