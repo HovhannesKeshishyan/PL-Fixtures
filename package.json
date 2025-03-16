@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "git-branch-cleanup": "git branch -r --merged main | ForEach-Object { $_.Trim() -replace 'origin/', '' } | Where-Object { $_ -ne 'main' } | ForEach-Object { git push origin --delete $_ }"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
