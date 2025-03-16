@@ -37,7 +37,7 @@ const fetchTeamsList = async () => {
 const getSelectedTeamIds = async (teamsList: Team[]) => {
     const cookiesList = await cookies();
     const selectedTeamsFromCookies = cookiesList.get("selectedTeams")?.value;
-    let selectedTeamIds: number[] = [];
+    let selectedTeamIds: number[];
     if (selectedTeamsFromCookies) {
         selectedTeamIds = JSON.parse(selectedTeamsFromCookies);
     } else {
