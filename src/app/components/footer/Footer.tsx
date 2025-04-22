@@ -36,7 +36,7 @@ export const Footer: FC = () => {
     return (
         <footer className={styles.footer}>
             <div className={`${styles.footerRow} ${styles.footerRow1}`}>
-                <p>Contacts</p>
+                <h4>Contacts</h4>
                 <ul className={styles.socialMedia}>
                     {socialLinks.map(item => {
                         return (

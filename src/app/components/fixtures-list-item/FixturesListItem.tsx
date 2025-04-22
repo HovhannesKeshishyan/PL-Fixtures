@@ -33,8 +33,8 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
                     alt={`${opponentTeam.name} logo`}
                     src={opponentTeam.crest}
                 />
-                <span className={styles.opponentTeamName + " app_text-ellipsis"}>
-                    {opponentTeam.name}
+                <span className={styles.opponentTeamName}>
+                    <h3 className="app_text-ellipsis">{opponentTeam.name}</h3>
                 </span>
                 <FixturesListItemDate utcDate={match.utcDate}/>
                 <Flex align="center" justify="center" className={stadiumClassName}>
@@ -47,10 +47,10 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
     return (
         <div className={styles.fixturesListItemWrapper}>
             <ul className={styles.fixturesListItem}>
-                <li className={styles.mainTeamName + " app_text-ellipsis"}
+                <li className={styles.mainTeamName}
                     tabIndex={0}
                     aria-label={`${teamName} fixtures`}>
-                    {teamName}
+                    <h2 className="app_text-ellipsis">{teamName}</h2>
                 </li>
                 {matches}
             </ul>
