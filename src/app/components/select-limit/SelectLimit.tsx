@@ -23,6 +23,7 @@ export const SelectLimit: FC<Props> = ({limit, onLimitChange}) => {
                 style={{width: 120}}
                 onChange={onLimitChange}
                 options={limitOptions}
+                aria-label="Select fixtures limit"
             />
         </div>
     );
