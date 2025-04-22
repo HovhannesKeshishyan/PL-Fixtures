@@ -1,6 +1,9 @@
 import type {Metadata, Viewport} from "next";
 import type {ReactNode} from "react";
 
+import {ConfigProvider} from "antd";
+
+
 import {Inter} from "next/font/google";
 import "./globals.scss";
 import styles from "./layout.module.scss";
@@ -10,6 +13,7 @@ import {Footer} from "@/app/components/footer/Footer";
 import {AntdRegistry} from "@ant-design/nextjs-registry";
 
 import {siteUrl, metaTitle, metaDescription} from "@/constants/metadata";
+import {AntDesignConfigProvider} from "@/constants/ant-design-theme-config";
 
 const inter = Inter({
     variable: "--font-inter-sans",
@@ -58,7 +62,9 @@ export default function RootLayout({children}: Props) {
         <body className={inter.variable}>
         <div className={styles.mainLayout}>
             <Header/>
-            <AntdRegistry>{children}</AntdRegistry>
+            <ConfigProvider theme={AntDesignConfigProvider}>
+                <AntdRegistry>{children}</AntdRegistry>
+            </ConfigProvider>
             <Footer/>
         </div>
         </body>
