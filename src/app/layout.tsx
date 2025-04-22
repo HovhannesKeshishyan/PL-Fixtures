@@ -62,9 +62,11 @@ export default function RootLayout({children}: Props) {
         <body className={inter.variable}>
         <div className={styles.mainLayout}>
             <Header/>
-            <ConfigProvider theme={AntDesignConfigProvider}>
-                <AntdRegistry>{children}</AntdRegistry>
-            </ConfigProvider>
+            <AntdRegistry>
+                <ConfigProvider theme={AntDesignConfigProvider}>
+                    {children}
+                </ConfigProvider>
+            </AntdRegistry>
             <Footer/>
         </div>
         </body>
