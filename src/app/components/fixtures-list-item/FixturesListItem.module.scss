@@ -3,9 +3,13 @@
 .fixturesListItemWrapper {
   display: flex;
   flex-direction: column;
+  min-height: 25rem;
   flex: 1 0 20rem;
   max-width: 40rem;
-  align-content: flex-start;
+
+  @media screen and (max-width: 520px) {
+    min-height: unset;
+  }
 
   .fixturesListItem {
     height: 100%;
@@ -44,6 +48,8 @@
     .opponentTeamNameWrapper {
       display: grid;
       grid-template-columns: 2.5rem 1fr 2rem 2.5rem;
+      align-items: center;
+      min-height: 5rem;
       gap: 1rem;
       padding: 1rem 1.5rem;
       border-bottom: 1px solid colors.$black;
@@ -78,5 +84,3 @@
     height: 100%;
   }
 }
-
-
