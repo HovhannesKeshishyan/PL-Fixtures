@@ -1,7 +1,8 @@
-import {FC} from "react";
+import type {FC} from "react";
 import {Select} from "antd";
-import styles from "./SelectTeams.module.scss";
+
 import type {Team} from "@/types/types.ts";
+import styles from "./SelectTeams.module.scss";
 
 interface Props {
     teams: Team[];

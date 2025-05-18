@@ -1,7 +1,9 @@
-import {FC} from "react";
+import type {FC} from "react";
 import {Select} from "antd";
-import styles from "./SelectLimit.module.scss";
+
 import type {FixturesLimit} from "@/types/types";
+
+import styles from "./SelectLimit.module.scss";
 
 interface Props {
     limit: FixturesLimit;

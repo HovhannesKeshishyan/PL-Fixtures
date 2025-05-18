@@ -1,8 +1,10 @@
+@use "@/app/assets/styles/breackpoints";
+
 .selectTeams {
   width: 100%;
   padding: 0 4rem;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     padding: 0 2rem;
   }
 

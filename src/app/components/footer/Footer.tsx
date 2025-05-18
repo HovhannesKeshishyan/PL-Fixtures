@@ -1,7 +1,8 @@
-import {FC, type ForwardRefExoticComponent} from "react";
-import styles from "./Footer.module.scss";
+import type {FC, ForwardRefExoticComponent} from "react";
 import {FacebookFilled, GithubOutlined, LinkedinFilled, XOutlined} from "@ant-design/icons";
 import {type AntdIconProps} from "@ant-design/icons/es/components/AntdIcon";
+
+import styles from "./Footer.module.scss";
 
 interface SocialMedia {
     name: string;

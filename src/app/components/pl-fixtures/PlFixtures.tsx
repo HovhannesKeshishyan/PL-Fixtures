@@ -1,11 +1,15 @@
 "use client"
-import Cookies from "js-cookie";
+
 import {useState} from "react";
 import {Flex} from "antd";
-import type {FixturesLimit, Team} from "@/types/types";
+
+import Cookies from "js-cookie";
+
 import {SelectTeams} from "@/app/components/select-teams/SelectTeams";
 import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
 import {SelectLimit} from "@/app/components/select-limit/SelectLimit";
+
+import type {FixturesLimit, Team} from "@/types/types";
 
 interface Props {
     teamsList: Team[];
