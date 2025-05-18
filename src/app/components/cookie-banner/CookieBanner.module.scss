@@ -1,3 +1,5 @@
+@use "@/app/assets/styles/breackpoints";
+
 .cookieBanner {
   position: fixed;
   z-index: 1001;
@@ -17,13 +19,13 @@
     font-size: 1.8rem;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: breackpoints.$tablet-large) {
     .cookieBannerContent {
       flex-direction: column;
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     .cookieBannerButtons {
       flex-direction: column;
       width: 100%;

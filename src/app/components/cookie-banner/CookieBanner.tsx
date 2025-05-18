@@ -1,9 +1,10 @@
 "use client"
 
 import {useState} from "react";
-import styles from "./CookieBanner.module.scss";
 import Cookies from "js-cookie";
 import {Button, Flex} from "antd";
+
+import styles from "./CookieBanner.module.scss";
 
 export const CookieBanner = () => {
     const [showCookieBanner, setShowCookieBanner] = useState(true);

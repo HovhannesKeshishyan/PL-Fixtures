@@ -1,7 +1,9 @@
+@use "@/app/assets/styles/breackpoints";
+
 .fixtures {
   padding: 0 4rem;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     padding: 0 2rem;
   }
 }
@@ -9,7 +11,7 @@
 .emptyResultsWrapper {
   margin: 0 4rem;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     margin: 0 2rem;
   }
 }
