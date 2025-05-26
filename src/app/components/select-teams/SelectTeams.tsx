@@ -27,8 +27,13 @@ export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => 
                 aria-label="search team"
             >
                 {teams.map(team => {
-                    return <Select.Option value={team.id} key={team.id}
-                                          data-search-value={team.name}>{team.name}</Select.Option>
+                    return (
+                        <Select.Option value={team.id}
+                                       data-search-value={team.name}
+                                       key={team.id}>
+                            <span>{team.name}</span>
+                        </Select.Option>
+                    )
                 })}
             </Select>
         </div>
