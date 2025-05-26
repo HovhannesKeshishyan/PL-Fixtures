@@ -1,19 +1,20 @@
-import type {Metadata, Viewport} from "next";
-import type {ReactNode} from "react";
+import {AntdRegistry} from "@ant-design/nextjs-registry";
 
 import {ConfigProvider} from "antd";
 
+import type {Metadata, Viewport} from "next";
+import type {ReactNode} from "react";
 
 import {Inter} from "next/font/google";
-import "./globals.scss";
-import styles from "./layout.module.scss";
 
 import {Header} from "@/app/components/header/Header";
 import {Footer} from "@/app/components/footer/Footer";
-import {AntdRegistry} from "@ant-design/nextjs-registry";
 
-import {siteUrl, metaTitle, metaDescription} from "@/constants/metadata";
+import {siteUrl, metaTitle, metaDescription, OGImageUrl} from "@/constants/metadata";
 import {AntDesignConfigProvider} from "@/constants/ant-design-theme-config";
+
+import "./globals.scss";
+import styles from "./layout.module.scss";
 
 const inter = Inter({
     variable: "--font-inter-sans",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
         url: siteUrl,
         images: [
             {
-                url: "/og-image.png",
+                url: OGImageUrl,
                 width: 1200,
                 height: 630,
                 alt: "Premier League Fixtures",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: metaTitle,
         description: metaDescription,
-        images: [`${siteUrl}/og-image.png`],
+        images: [OGImageUrl],
     },
 };
 

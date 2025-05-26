@@ -1,7 +1,10 @@
+@use "@/app/assets/styles/breackpoints";
+
+
 .title {
   min-width: 40rem;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     min-width: unset;
     width: 80%
   }

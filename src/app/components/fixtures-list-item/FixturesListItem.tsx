@@ -1,9 +1,11 @@
-import {FC, type ReactElement} from "react";
-import type {Fixture, Match, Team} from "@/types/types.ts";
-import styles from "./FixturesListItem.module.scss";
+import type {FC, ReactElement} from "react";
 import Image from "next/image";
 import {Flex, Skeleton} from "antd";
+
 import {FixturesListItemDate} from "@/app/components/fixtures-list-item-date/FixturesListItemDate";
+
+import type {Fixture, Match, Team} from "@/types/types.ts";
+import styles from "./FixturesListItem.module.scss";
 
 interface Props {
     fixture: Fixture;
@@ -18,34 +20,43 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
             <Skeleton active/>
         </div>
     } else {
-        matches = fixture.matches.map((match: Match) => {
-            const opponentTeam: Team = match.homeTeam.id === fixture.teamId ? match.awayTeam : match.homeTeam;
-            const stadium = opponentTeam.id === match.homeTeam.id ? "A" : "H";
-            const stadiumClassName = stadium === "H" ? styles.stadium : styles.stadium + " " + styles.awayStadium;
-            const ariaLabel = `${opponentTeam.name} ${stadium === "H" ? "Home game" : "Away game"}`;
-            return <li className={styles.opponentTeamNameWrapper}
-                       tabIndex={0}
-                       aria-label={ariaLabel}
-                       key={match.id}>
-                <Image
-                    width={25}
-                    height={25}
-                    alt={`${opponentTeam.name} logo`}
-                    src={opponentTeam.crest}
-                />
-                <span className={styles.opponentTeamName}>
+        if(fixture.matches.length) {
+            matches = fixture.matches.map((match: Match) => {
+                const opponentTeam: Team = match.homeTeam.id === fixture.teamId ? match.awayTeam : match.homeTeam;
+                const stadium = opponentTeam.id === match.homeTeam.id ? "A" : "H";
+                const stadiumClassName = stadium === "H" ? styles.stadium : styles.stadium + " " + styles.awayStadium;
+                const ariaLabel = `${opponentTeam.name} ${stadium === "H" ? "Home game" : "Away game"}`;
+                return <li className={styles.opponentTeamNameWrapper}
+                           tabIndex={0}
+                           aria-label={ariaLabel}
+                           key={match.id}>
+                    <Image
+                        width={25}
+                        height={25}
+                        alt={`${opponentTeam.name} logo`}
+                        src={opponentTeam.crest}
+                    />
+                    <span className={styles.opponentTeamName}>
                     <h3 className="app_text-ellipsis">{opponentTeam.name}</h3>
                 </span>
-                <FixturesListItemDate utcDate={match.utcDate}/>
-                <Flex align="center" justify="center" className={stadiumClassName}>
-                    <span aria-label={ariaLabel}>{stadium}</span>
-                </Flex>
-            </li>
-        });
+                    <FixturesListItemDate utcDate={match.utcDate}/>
+                    <Flex align="center" justify="center" className={stadiumClassName}>
+                        <span aria-label={ariaLabel}>{stadium}</span>
+                    </Flex>
+                </li>
+            });
+        } else {
+            matches = <li className={styles.noMoreFixturesMessage}>No more fixtures</li>
+        }
+    }
+
+    let wrapperClassName = styles.fixturesListItemWrapper;
+    if(!fixture?.matches.length) {
+        wrapperClassName += ` ${styles.noMoreFixtures}`;
     }
 
     return (
-        <div className={styles.fixturesListItemWrapper}>
+        <div className={wrapperClassName}>
             <ul className={styles.fixturesListItem}>
                 <li className={styles.mainTeamName}
                     tabIndex={0}

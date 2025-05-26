@@ -1,4 +1,5 @@
 @use "@/app/assets/styles/colors";
+@use "@/app/assets/styles/breackpoints";
 
 .header {
   padding: 2rem 2rem 0 2rem;
@@ -8,7 +9,7 @@
     color: colors.$primary;
     font-size: 4rem;
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: breackpoints.$phone) {
       font-size: 2rem;
       line-height: 2rem;
     }

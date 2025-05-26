@@ -1,6 +1,7 @@
 "use client"
 
-import {FC, type ReactNode} from "react";
+import type {FC, ReactNode} from "react";
+
 import {ErrorBoundary} from "@/app/components/error-boundary/ErrorBoundary";
 
 interface Props {

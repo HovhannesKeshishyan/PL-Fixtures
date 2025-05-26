@@ -1,6 +1,7 @@
-import React, {Component, ReactNode} from "react";
-import styles from "./ErrorBoundary.module.scss";
+import React, {Component, type ReactNode} from "react";
 import {Flex, Alert, Button} from "antd";
+
+import styles from "./ErrorBoundary.module.scss";
 
 interface Props {
     children: ReactNode;

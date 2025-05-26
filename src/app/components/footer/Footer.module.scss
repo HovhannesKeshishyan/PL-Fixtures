@@ -1,4 +1,5 @@
 @use "@/app/assets/styles/colors";
+@use "@/app/assets/styles/breackpoints";
 
 .footer {
   width: 100%;
@@ -48,7 +49,7 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: breackpoints.$phone) {
     .footerRow {
       font-size: 2.2rem;
     }
