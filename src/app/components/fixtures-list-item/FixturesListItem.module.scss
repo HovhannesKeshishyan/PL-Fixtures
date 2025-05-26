@@ -85,3 +85,15 @@
     height: 100%;
   }
 }
+
+.fixturesListItemWrapper.noMoreFixtures {
+  min-height: unset;
+
+  .noMoreFixturesMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2.5rem;
+    background-color: colors.$bgWarning;
+  }
+}
