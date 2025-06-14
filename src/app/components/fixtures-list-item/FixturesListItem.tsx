@@ -46,7 +46,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
                 </li>
             });
         } else {
-            matches = <li className={styles.noMoreFixturesMessage}>No more fixtures</li>
+            matches = <li className={styles.noMoreFixturesMessage}>The fixtures for new season will be available soon</li>
         }
     }
 
