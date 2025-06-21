@@ -7,9 +7,12 @@
   min-height: 25rem;
   flex: 1 0 20rem;
   max-width: 40rem;
+  min-width: 35rem;
 
   @media screen and (max-width: breackpoints.$phone-large) {
     min-height: unset;
+    max-width: 90vw;
+    min-width: unset;
   }
 
   .fixturesListItem {
