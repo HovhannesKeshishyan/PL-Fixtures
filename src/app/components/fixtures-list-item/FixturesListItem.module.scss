@@ -25,9 +25,10 @@
     padding: 0;
     transition: box-shadow .3s;
 
-    &:hover,
-    &:focus-visible {
-      box-shadow: 0 0 1rem 0.4rem colors.$primary;
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: 0 0 1rem 0.4rem colors.$primary;
+      }
     }
 
     li {
