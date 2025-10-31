@@ -65,7 +65,9 @@ export default function RootLayout({children}: Props) {
             <Header/>
             <AntdRegistry>
                 <ConfigProvider theme={AntDesignConfigProvider}>
-                    {children}
+                    <main>
+                        {children}
+                    </main>
                 </ConfigProvider>
             </AntdRegistry>
             <Footer/>
