@@ -20,7 +20,13 @@ export const getAllFixtures = async (teamIds: number[], limit: FixturesLimit, co
     return data;
 }
 
-export const getAvailableCompetitions = async () => {
-    const {data} = await axios.get<Competition>(`${BASE_URL}/api/competitions`);
+interface ScorePredictionPayload {
+    matchID: string;
+    homeTeam: string;
+    awayTeam: string;
+    matchDate: string;
+}
+export const getScorePrediction = async (payload: ScorePredictionPayload) => {
+    const {data} = await axios.post<{score: string}>(`${BASE_URL}/api/predict-scores`, payload);
     return data;
 }
