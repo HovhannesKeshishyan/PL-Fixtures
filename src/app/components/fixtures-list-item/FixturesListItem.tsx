@@ -3,6 +3,7 @@ import Image from "next/image";
 import {Flex, Skeleton} from "antd";
 
 import {FixturesListItemDate} from "@/app/components/fixtures-list-item-date/FixturesListItemDate";
+import {FixturesListItemAiPrediction} from "@/app/components/fixtures-list-item-ai-prediction/FixturesListItemAiPrediction";
 
 import type {Fixture, Match, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
@@ -26,24 +27,31 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
                 const stadium = opponentTeam.id === match.homeTeam.id ? "A" : "H";
                 const stadiumClassName = stadium === "H" ? styles.stadium : styles.stadium + " " + styles.awayStadium;
                 const ariaLabel = `${opponentTeam.name} ${stadium === "H" ? "Home game" : "Away game"}`;
-                return <li className={styles.opponentTeamNameWrapper}
-                           tabIndex={0}
-                           aria-label={ariaLabel}
-                           key={match.id}>
-                    <Image
-                        width={25}
-                        height={25}
-                        alt={`${opponentTeam.name} logo`}
-                        src={opponentTeam.crest}
-                    />
-                    <span className={styles.opponentTeamName}>
-                    <h3 className="app_text-ellipsis">{opponentTeam.name}</h3>
-                </span>
-                    <FixturesListItemDate utcDate={match.utcDate}/>
-                    <Flex align="center" justify="center" className={stadiumClassName}>
-                        <span aria-label={ariaLabel}>{stadium}</span>
-                    </Flex>
-                </li>
+                return (
+                    <li className={styles.opponentTeamNameWrapper}
+                        tabIndex={0}
+                        aria-label={ariaLabel}
+                        key={match.id}>
+                        <Image
+                            width={25}
+                            height={25}
+                            alt={`${opponentTeam.name} logo`}
+                            src={opponentTeam.crest}
+                        />
+
+                        <span className={styles.opponentTeamName}>
+                              <h3 className="app_text-ellipsis">{opponentTeam.name}</h3>
+                        </span>
+
+                        <FixturesListItemDate utcDate={match.utcDate}/>
+
+                        <Flex align="center" justify="center" className={stadiumClassName}>
+                            <span aria-label={ariaLabel}>{stadium}</span>
+                        </Flex>
+
+                        <FixturesListItemAiPrediction match={match}/>
+                    </li>
+                )
             });
         } else {
             matches = <li className={styles.noMoreFixturesMessage}>The fixtures for new season will be available soon</li>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {Competition, Fixture, FixturesLimit, Team} from "@/types/types";
+import type {Fixture, FixturesLimit, Team} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
@@ -20,7 +20,13 @@ export const getAllFixtures = async (teamIds: number[], limit: FixturesLimit, co
     return data;
 }
 
-export const getAvailableCompetitions = async () => {
-    const {data} = await axios.get<Competition>(`${BASE_URL}/api/competitions`);
+interface ScorePredictionPayload {
+    matchID: string;
+    homeTeam: string;
+    awayTeam: string;
+    matchDate: string;
+}
+export const getScorePrediction = async (payload: ScorePredictionPayload) => {
+    const {data} = await axios.post<{score: string}>(`${BASE_URL}/api/predict-scores`, payload);
     return data;
 }
