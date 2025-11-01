@@ -11,7 +11,6 @@ import styles from "./Fixtures.module.scss";
 interface Props {
     teamsList: Team[];
     limit: FixturesLimit;
-    competitions: string | string[];
     selectedTeams: number[];
 }
 
@@ -19,7 +18,7 @@ interface CachedFixtures {
     [key: string]: Fixture;
 }
 
-export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selectedTeams}) => {
+export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
     const [cachedFixtures, setCachedFixtures] = useState<CachedFixtures>({});
     const [limitLastValue, setLimitLastValue] = useState<FixturesLimit>(limit);
     const [error, setError] = useState<null | Error>(null);
@@ -38,7 +37,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
 
         const fetchFixtures = async () => {
             try {
-                const data: Fixture[] = await getAllFixtures(selectedTeams, limit, competitions);
+                const data: Fixture[] = await getAllFixtures({ids: selectedTeams, limit});
                 const newValue: CachedFixtures = {}
                 data.forEach(item => {
                     newValue[item.teamId] = item;
@@ -53,7 +52,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, competitions, selecte
 
         // fetch only if new team is selected
         if (needFetchAgain) fetchFixtures();
-    }, [needFetchAgain, selectedTeams, limit, competitions]);
+    }, [needFetchAgain, selectedTeams, limit]);
 
     if (error) {
         return <h1>{error.message}</h1>

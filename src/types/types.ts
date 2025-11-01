@@ -23,10 +23,6 @@ export interface Fixture {
     matches: Match[];
 }
 
-export interface Competition {
-    [key: string]: string;
-}
-
 export type FixturesLimit = "all" | "5" | "10" | "15";
 
 export interface DateTimeFormatOptions {
@@ -36,4 +32,17 @@ export interface DateTimeFormatOptions {
     hour?: "2-digit" | "numeric" | undefined;
     minute?: "2-digit" | "numeric" | undefined;
     hour12?: boolean;
+}
+
+// Request Payloads
+export interface AllFixturesPayload {
+    ids: number[];
+    limit: FixturesLimit;
+}
+
+export interface ScorePredictionPayload {
+    matchID: string;
+    homeTeam: string;
+    awayTeam: string;
+    matchDate: string;
 }
