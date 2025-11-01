@@ -11,6 +11,10 @@ export interface Match {
     utcDate: string;
     homeTeam: Team;
     awayTeam: Team;
+    aiPrediction: {
+        score: string;
+        lastUpdated: string;
+    } | null;
 }
 
 export interface Fixture {
