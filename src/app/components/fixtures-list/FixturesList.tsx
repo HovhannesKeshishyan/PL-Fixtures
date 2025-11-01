@@ -37,7 +37,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
 
         const fetchFixtures = async () => {
             try {
-                const data: Fixture[] = await getAllFixtures(selectedTeams, limit);
+                const data: Fixture[] = await getAllFixtures({ids: selectedTeams, limit});
                 const newValue: CachedFixtures = {}
                 data.forEach(item => {
                     newValue[item.teamId] = item;

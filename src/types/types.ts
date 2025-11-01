@@ -35,6 +35,11 @@ export interface DateTimeFormatOptions {
 }
 
 // Request Payloads
+export interface AllFixturesPayload {
+    ids: number[];
+    limit: FixturesLimit;
+}
+
 export interface ScorePredictionPayload {
     matchID: string;
     homeTeam: string;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {Fixture, FixturesLimit, Team, ScorePredictionPayload} from "@/types/types";
+import type {Fixture, Team, ScorePredictionPayload, AllFixturesPayload} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
@@ -10,11 +10,7 @@ export const getTeamsList = async (): Promise<Team[]> => {
     return data;
 }
 
-export const getAllFixtures = async (teamIds: number[], limit: FixturesLimit): Promise<Fixture[]> => {
-    const payload = {
-        ids: teamIds,
-        limit
-    }
+export const getAllFixtures = async (payload: AllFixturesPayload): Promise<Fixture[]> => {
     const {data} = await axios.post<Fixture[]>(`${BASE_URL}/api/fixtures`, payload);
     return data;
 }
