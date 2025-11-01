@@ -20,7 +20,6 @@ interface Props {
 function PlFixtures({teamsList, selectedTeamIds, limit}: Props) {
     const [selectedTeams, setSelectedTeams] = useState<number[]>(selectedTeamIds);
     const [fixturesLimit, setFixturesLimit] = useState<FixturesLimit>(limit);
-    const [competitions] = useState<string | string[]>(["PL"]);
 
     const cookiesAccepted = () => {
         return Cookies.get("cookiesAccepted") === "true";
@@ -47,8 +46,7 @@ function PlFixtures({teamsList, selectedTeamIds, limit}: Props) {
                              onTeamSelect={handleTeamSelect}/>
                 <SelectLimit limit={fixturesLimit} onLimitChange={handleLimitChange}/>
             </Flex>
-            <FixturesList teamsList={teamsList} competitions={competitions} limit={fixturesLimit}
-                          selectedTeams={selectedTeams}/>
+            <FixturesList teamsList={teamsList} limit={fixturesLimit} selectedTeams={selectedTeams}/>
         </Flex>
     )
 }
