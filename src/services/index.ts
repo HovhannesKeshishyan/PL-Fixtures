@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {Competition, Fixture, FixturesLimit, Team} from "@/types/types";
+import type {Fixture, FixturesLimit, Team} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
