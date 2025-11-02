@@ -7,6 +7,7 @@ export interface Team {
 
 export interface Match {
     id: number;
+    uuid: string;
     lastUpdated: string;
     utcDate: string;
     homeTeam: Team;
@@ -41,7 +42,7 @@ export interface AllFixturesPayload {
 }
 
 export interface ScorePredictionPayload {
-    matchID: string;
+    matchUUID: string;
     homeTeam: string;
     awayTeam: string;
     matchDate: string;

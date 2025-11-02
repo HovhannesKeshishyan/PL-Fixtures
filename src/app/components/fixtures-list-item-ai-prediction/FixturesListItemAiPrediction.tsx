@@ -19,7 +19,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match}) => {
     const [predictionError, setPredictionError] = useState(false);
 
     const payloadData = useMemo(() => ({
-        matchID: String(match.id),
+        matchUUID: String(match.uuid),
         homeTeam: match.homeTeam.name,
         awayTeam: match.awayTeam.name,
         matchDate: match.utcDate,
