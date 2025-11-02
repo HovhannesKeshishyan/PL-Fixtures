@@ -1,3 +1,8 @@
+export interface Prediction {
+    score: string;
+    lastUpdated: string;
+}
+
 export interface Team {
     id: number;
     name: string;
@@ -12,10 +17,7 @@ export interface Match {
     utcDate: string;
     homeTeam: Team;
     awayTeam: Team;
-    aiPrediction: {
-        score: string;
-        lastUpdated: string;
-    } | null;
+    aiPrediction: Prediction | null;
 }
 
 export interface Fixture {
