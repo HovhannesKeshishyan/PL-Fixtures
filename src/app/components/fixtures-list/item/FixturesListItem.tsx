@@ -5,16 +5,17 @@ import {Flex, Skeleton} from "antd";
 import {FixturesListItemDate} from "./date/FixturesListItemDate";
 import {FixturesListItemAiPrediction} from "./ai-prediction/FixturesListItemAiPrediction";
 
-import type {Fixture, Match, Team} from "@/types/types.ts";
+import type {Fixture, Match, Prediction, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
 
 interface Props {
     fixture: Fixture;
     teamName: string;
     isLoading: boolean;
+    onNewPredictionAction: (prediction: Prediction, matchUUID: string) => void
 }
 
-export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
+export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading, onNewPredictionAction}) => {
     let matches: ReactElement | ReactElement[];
     if (isLoading) {
         matches = <div className={styles.skeletonWrapper}>
@@ -49,7 +50,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading}) => {
                             <span aria-label={ariaLabel}>{stadium}</span>
                         </Flex>
 
-                        <FixturesListItemAiPrediction match={match}/>
+                        <FixturesListItemAiPrediction match={match} onNewPredictionAction={onNewPredictionAction}/>
                     </li>
                 )
             });

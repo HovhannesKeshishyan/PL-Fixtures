@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {Fixture, Team, ScorePredictionPayload, AllFixturesPayload} from "@/types/types";
+import type {Fixture, Team, ScorePredictionPayload, AllFixturesPayload, Prediction} from "@/types/types";
 
 const BASE_URL_DEV = "http://localhost:4000";
 const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
@@ -16,6 +16,6 @@ export const getAllFixtures = async (payload: AllFixturesPayload): Promise<Fixtu
 }
 
 export const getScorePrediction = async (payload: ScorePredictionPayload) => {
-    const {data} = await axios.post<{score: string}>(`${BASE_URL}/api/predict-scores`, payload);
+    const {data} = await axios.post<Prediction>(`${BASE_URL}/api/predict-scores`, payload);
     return data;
 }

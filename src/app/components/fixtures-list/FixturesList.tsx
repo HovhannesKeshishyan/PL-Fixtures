@@ -4,7 +4,7 @@ import {Flex, Alert} from "antd";
 import {FixturesListItem} from "./item/FixturesListItem";
 import {getAllFixtures} from "@/services";
 
-import type {Fixture, FixturesLimit, Team} from "@/types/types.ts";
+import type {Fixture, FixturesLimit, Match, Prediction, Team} from "@/types/types.ts";
 
 import styles from "./Fixtures.module.scss";
 
@@ -31,6 +31,30 @@ export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
     const limitIsChanged = limit !== limitLastValue;
 
     const needFetchAgain = !!newAddedTeams.length || limitIsChanged;
+
+    const addNewPrediction = (prediction: Prediction, matchUUID: string) => {
+        // matchUUID is created from match.id, homeTeam.id awayTeam.id
+        const [, homeTeamID, awayTeamID] = matchUUID.split("-");
+
+        const updatedData = {...cachedFixtures};
+
+        // when get prediction for match of one team and opponent
+        // fixtures are also in the screen
+        // this is to update both
+        const relatedMatches: Match[] = [];
+
+        [homeTeamID, awayTeamID].forEach(id => {
+            if(updatedData[id]) relatedMatches.push(...updatedData[id].matches);
+        })
+
+        relatedMatches.forEach(match => {
+            if (match.uuid === matchUUID) {
+                match.aiPrediction = prediction;
+            }
+        })
+
+        setCachedFixtures(updatedData);
+    }
 
     useEffect(() => {
         if (!selectedTeams.length) return;
@@ -59,7 +83,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
     }
 
     if (!selectedTeams?.length) {
-        return(
+        return (
             <div className={styles.emptyResultsWrapper}>
                 <Alert message="Please select team to see fixtures" type="warning" showIcon/>
             </div>
@@ -76,6 +100,7 @@ export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
                     return <FixturesListItem fixture={fixture}
                                              teamName={teamName}
                                              isLoading={!cachedFixtures[teamId]}
+                                             onNewPredictionAction={addNewPrediction}
                                              key={teamId}/>
                 })}
             </Flex>

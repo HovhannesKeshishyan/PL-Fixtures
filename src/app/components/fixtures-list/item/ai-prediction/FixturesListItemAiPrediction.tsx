@@ -5,21 +5,30 @@ import {OpenAIOutlined} from "@ant-design/icons";
 
 import {getScorePrediction} from "@/services";
 
-import type {Match} from "@/types/types";
+import type {Match, Prediction} from "@/types/types";
 
 import styles from "./FixturesListItemAiPrediction.module.scss";
 
 interface Props {
     match: Match;
+    onNewPredictionAction: (prediction: Prediction, matchUUID: string) => void
 }
 
-export const FixturesListItemAiPrediction: FC<Props> = ({match}) => {
-    const [prediction, setPrediction] = useState<string | null>(null);
+const getFormattedPrediction = (match: Match) => {
+    const score = match?.aiPrediction?.score;
+    if (score) {
+        return `${match.homeTeam.name} ${score} ${match.awayTeam.name}`;
+    } else {
+        return null;
+    }
+}
+
+export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionAction}) => {
     const [predictionIsLoading, setPredictionIsLoading] = useState(false);
     const [predictionError, setPredictionError] = useState(false);
 
     const payloadData = useMemo(() => ({
-        matchUUID: String(match.uuid),
+        matchUUID: match.uuid,
         homeTeam: match.homeTeam.name,
         awayTeam: match.awayTeam.name,
         matchDate: match.utcDate,
@@ -27,14 +36,13 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match}) => {
 
     const popoverButtonRef = useRef<HTMLButtonElement>(null);
 
-    const existingPrediction = match.aiPrediction?.score || prediction;
+    const prediction = getFormattedPrediction(match);
 
     const getPrediction = async () => {
         setPredictionIsLoading(true);
         try {
-            const response = await getScorePrediction(payloadData);
-            setPrediction(response.score);
-            console.log(response.score)
+            const newPrediction = await getScorePrediction(payloadData);
+            onNewPredictionAction(newPrediction, match.uuid);
         } catch (error) {
             console.log(error);
             setPredictionError(true);
@@ -43,7 +51,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match}) => {
     }
 
     let content = null;
-    if (existingPrediction) content = <span>{existingPrediction}</span>
+    if (prediction) content = <span>{prediction}</span>
     else if (predictionIsLoading) {
         content = <span>Loading prediction...</span>
     } else if (predictionError) {
@@ -65,7 +73,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match}) => {
         }
     }
 
-    const ariaLabel = existingPrediction ? `Prediction is ${existingPrediction}` : "There is no prediction yet."
+    const ariaLabel = prediction ? `Prediction is ${prediction}` : "There is no prediction yet."
 
     return (
         <Flex align="center" justify="center" className={styles.aiPrediction} aria-label={ariaLabel}>
