@@ -2,8 +2,8 @@ import type {FC, ReactElement} from "react";
 import Image from "next/image";
 import {Flex, Skeleton} from "antd";
 
-import {FixturesListItemDate} from "@/app/components/fixtures-list-item-date/FixturesListItemDate";
-import {FixturesListItemAiPrediction} from "@/app/components/fixtures-list-item-ai-prediction/FixturesListItemAiPrediction";
+import {FixturesListItemDate} from "./date/FixturesListItemDate";
+import {FixturesListItemAiPrediction} from "./ai-prediction/FixturesListItemAiPrediction";
 
 import type {Fixture, Match, Team} from "@/types/types.ts";
 import styles from "./FixturesListItem.module.scss";
