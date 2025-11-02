@@ -14,6 +14,15 @@ interface Props {
     onNewPredictionAction: (prediction: Prediction, matchUUID: string) => void
 }
 
+const getFormattedPrediction = (match: Match) => {
+    const score = match?.aiPrediction?.score;
+    if (score) {
+        return `${match.homeTeam.name} ${score} ${match.awayTeam.name}`;
+    } else {
+        return null;
+    }
+}
+
 export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionAction}) => {
     const [predictionIsLoading, setPredictionIsLoading] = useState(false);
     const [predictionError, setPredictionError] = useState(false);
@@ -27,7 +36,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
 
     const popoverButtonRef = useRef<HTMLButtonElement>(null);
 
-    const prediction = match.aiPrediction?.score;
+    const prediction = getFormattedPrediction(match);
 
     const getPrediction = async () => {
         setPredictionIsLoading(true);
