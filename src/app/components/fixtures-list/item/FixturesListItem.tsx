@@ -66,7 +66,7 @@ export const FixturesListItem: FC<Props> = ({fixture, teamName, isLoading, onNew
 
     return (
         <div className={wrapperClassName}>
-            <ul className={styles.fixturesListItem}>
+            <ul className={styles.fixturesListItem} data-testid="fixtures-list-item">
                 <li className={styles.mainTeamName}
                     tabIndex={0}
                     aria-label={`${teamName} fixtures`}>
