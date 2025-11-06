@@ -39,10 +39,11 @@ export class ErrorBoundary extends Component<Props, State> {
                            message={message}
                            showIcon={true}
                            className={styles.title}
-                           description="Please try again later."/>
+                           description="Please try again later."
+                           data-testid="error-boundary-alert"/>
 
-                    <Button type="primary" onClick={this.resetError.bind(this)}>
-                        Try gain
+                    <Button type="primary" onClick={this.resetError.bind(this)} data-testid="error-boundary--btn">
+                        Try again
                     </Button>
                 </Flex>
             );
