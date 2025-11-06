@@ -5,7 +5,10 @@ import { ErrorBoundary } from "@/app/components/error-boundary/ErrorBoundary";
 const TEST_ERROR_MESSAGE = "OOPS ERROR MESSAGE";
 
 function ProblemChild() {
-    throw new Error(TEST_ERROR_MESSAGE);
+    // if block is to remove idea "unreachable code" warning
+    if(10 > 1) {
+        throw new Error(TEST_ERROR_MESSAGE);
+    }
     return <h1>For JSX warning</h1>
 }
 
