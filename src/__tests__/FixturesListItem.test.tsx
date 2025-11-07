@@ -6,10 +6,6 @@ import type {Fixture} from "@/types/types.ts";
 
 import {TEAMS, mockTeamsList, mockMatch, DATE_NOW} from "./moch-data";
 
-vi.mock("next/image", () => ({
-    default: vi.fn(({alt}) => <img alt={alt}/>),
-}));
-
 vi.mock("antd", async (importOriginal) => {
     const antd = await importOriginal<typeof import("antd")>();
     return {
