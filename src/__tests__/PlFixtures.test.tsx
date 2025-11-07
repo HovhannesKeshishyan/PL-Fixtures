@@ -3,6 +3,7 @@ import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
 
 import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
+
 import type {FixturesLimit} from "@/types/types";
 
 import {MOCK_SELECTED_TEAMS_IDS, MOCK_TEAMS_LIST} from "./moch-data";
@@ -13,6 +14,7 @@ const mockCookies = vi.hoisted(() => ({
 }));
 
 const LIMIT: FixturesLimit = "10";
+const LIMIT_2: FixturesLimit = "15";
 
 const UPDATED_TEAMS_IDS = [10, 20];
 
@@ -33,7 +35,7 @@ vi.mock("@/app/components/select-teams/SelectTeams", () => ({
 vi.mock("@/app/components/select-limit/SelectLimit", () => ({
     SelectLimit: vi.fn(({limit, onLimitChange}) => (
         <div data-testid="SelectLimit" data-limit={limit}>
-            <button onClick={() => onLimitChange(20)}>Change Limit</button>
+            <button onClick={() => onLimitChange(LIMIT_2)}>Change Limit</button>
         </div>
     )),
 }));
@@ -106,7 +108,7 @@ describe("PlFixtures", () => {
 
         // Check if the state update is reflected in the dependent components (FixturesList)
         const fixturesList = screen.getByTestId("FixturesList");
-        expect(fixturesList).toHaveAttribute("data-limit", "20");
+        expect(fixturesList).toHaveAttribute("data-limit", LIMIT_2);
     });
 
     // --- Cookie Side Effect Tests (Crucial) ---
@@ -142,7 +144,7 @@ describe("PlFixtures", () => {
             // Check that Cookies.set was called with the correct data
             expect(mockCookies.set).toHaveBeenCalledWith(
                 "limit",
-                "20"
+                LIMIT_2
             );
         });
 
@@ -170,7 +172,7 @@ describe("PlFixtures", () => {
             // Sanity Check: Ensure state still updated correctly
             const fixturesList = screen.getByTestId("FixturesList");
             expect(fixturesList).toHaveAttribute("data-selected-teams", UPDATED_TEAMS_IDS.join(","));
-            expect(fixturesList).toHaveAttribute("data-limit", "20");
+            expect(fixturesList).toHaveAttribute("data-limit", LIMIT_2);
         });
     });
 });

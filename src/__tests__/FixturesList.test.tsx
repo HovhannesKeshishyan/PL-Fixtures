@@ -8,7 +8,7 @@ import * as services from "@/services/index";
 
 import type {Fixture} from "@/types/types.ts";
 
-import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./moch-data";
+import {MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW, MOCK_SELECTED_TEAMS_IDS} from "./moch-data";
 
 vi.mock("@/app/components/fixtures-list/item/FixturesListItem", () => ({
     FixturesListItem: vi.fn(() => <div data-testid="fixtures-list-item"/>),
@@ -227,14 +227,13 @@ describe("FixturesList", () => {
     });
 
     it("should render fixtures items for every selected team", async () => {
-        const selectedTeams = MOCK_TEAM_NAMES.map((_, index) => index);
-        mockedGetAllFixtures.mockResolvedValue(getMockFixtures(selectedTeams));
+        mockedGetAllFixtures.mockResolvedValue(getMockFixtures(MOCK_SELECTED_TEAMS_IDS));
 
         render(
             <FixturesList
                 teamsList={MOCK_TEAMS_LIST}
                 limit="5"
-                selectedTeams={selectedTeams}
+                selectedTeams={MOCK_SELECTED_TEAMS_IDS}
             />
         );
 
@@ -243,6 +242,6 @@ describe("FixturesList", () => {
         });
 
         const listItems = screen.queryAllByTestId("fixtures-list-item");
-        expect(listItems).toHaveLength(selectedTeams.length);
+        expect(listItems).toHaveLength(MOCK_SELECTED_TEAMS_IDS.length);
     });
 });
