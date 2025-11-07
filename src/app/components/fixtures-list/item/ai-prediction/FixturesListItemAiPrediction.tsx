@@ -50,7 +50,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
         setPredictionIsLoading(false);
     }
 
-    let content = null;
+    let content;
     if (prediction) content = <span>{prediction}</span>
     else if (predictionIsLoading) {
         content = <span>Loading prediction...</span>
