@@ -8,7 +8,7 @@ import * as services from "@/services/index";
 
 import type {Fixture} from "@/types/types.ts";
 
-import {TEAMS, mockTeamsList, mockMatch, DATE_NOW} from "./moch-data";
+import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./moch-data";
 
 vi.mock("@/app/components/fixtures-list/item/FixturesListItem", () => ({
     FixturesListItem: vi.fn(() => <div data-testid="fixtures-list-item"/>),
@@ -33,7 +33,7 @@ const getMockFixtures = (ids: number[]): Fixture[] => {
     return ids.map((id) => {
         return {
             teamId: id,
-            matches: [structuredClone(mockMatch)],
+            matches: [structuredClone(MOCK_MATCH)],
             lastUpdated: DATE_NOW
         }
     });
@@ -55,7 +55,7 @@ describe("FixturesList", () => {
 
     it("should render an alert when no teams are selected", () => {
         render(
-            <FixturesList teamsList={mockTeamsList} limit="all" selectedTeams={[]}/>
+            <FixturesList teamsList={MOCK_TEAMS_LIST} limit="all" selectedTeams={[]}/>
         );
         expect(
             screen.getByText("Please select team to see fixtures")
@@ -68,7 +68,7 @@ describe("FixturesList", () => {
 
         render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={[1, 2]}
             />
@@ -98,7 +98,7 @@ describe("FixturesList", () => {
 
         render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={[1]}
             />
@@ -115,7 +115,7 @@ describe("FixturesList", () => {
         mockedGetAllFixtures.mockResolvedValueOnce(getMockFixtures([1]));
         const {rerender} = render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={[1]}
             />
@@ -130,7 +130,7 @@ describe("FixturesList", () => {
         // Re-render with same props
         rerender(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={[1]}
             />
@@ -150,7 +150,7 @@ describe("FixturesList", () => {
         mockedGetAllFixtures.mockResolvedValue(getMockFixtures(selectedTeams));
         const {rerender} = render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={selectedTeams}
             />
@@ -169,7 +169,7 @@ describe("FixturesList", () => {
         // Re-render with new limit
         rerender(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={selectedTeams2}
             />
@@ -190,7 +190,7 @@ describe("FixturesList", () => {
         mockedGetAllFixtures.mockResolvedValue(getMockFixtures([1]));
         const {rerender} = render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="all"
                 selectedTeams={[1]}
             />
@@ -209,7 +209,7 @@ describe("FixturesList", () => {
         // Re-render with new limit
         rerender(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="5"
                 selectedTeams={[1]}
             />
@@ -227,12 +227,12 @@ describe("FixturesList", () => {
     });
 
     it("should render fixtures items for every selected team", async () => {
-        const selectedTeams = TEAMS.map((_, index) => index);
+        const selectedTeams = MOCK_TEAM_NAMES.map((_, index) => index);
         mockedGetAllFixtures.mockResolvedValue(getMockFixtures(selectedTeams));
 
         render(
             <FixturesList
-                teamsList={mockTeamsList}
+                teamsList={MOCK_TEAMS_LIST}
                 limit="5"
                 selectedTeams={selectedTeams}
             />

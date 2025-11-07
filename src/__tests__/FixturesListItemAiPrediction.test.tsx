@@ -11,7 +11,7 @@ import {getScorePrediction} from "@/services";
 
 import type {Match, Prediction} from "@/types/types";
 
-import {mockMatch, TEAMS} from "./moch-data";
+import {MOCK_MATCH, MOCK_TEAM_NAMES} from "./moch-data";
 
 
 vi.mock("@/services", () => ({
@@ -54,12 +54,12 @@ vi.mock("antd", async (importOriginal) => {
 const mockedGetScorePrediction = getScorePrediction as Mock;
 
 const mockMatchWithoutPrediction: Match = {
-    ...mockMatch,
+    ...MOCK_MATCH,
     aiPrediction: null,
 };
 
 const mockMatchWithPrediction: Match = {
-    ...mockMatch,
+    ...MOCK_MATCH,
     aiPrediction: {
         score: "2-1",
         lastUpdated: ""
@@ -108,7 +108,7 @@ describe("FixturesListItemAiPrediction", () => {
             />
         );
 
-        const expectedText = [TEAMS[0], mockMatchWithPrediction.aiPrediction?.score, TEAMS[1]].join(" ");
+        const expectedText = [MOCK_TEAM_NAMES[0], mockMatchWithPrediction.aiPrediction?.score, MOCK_TEAM_NAMES[1]].join(" ");
         const expectedAriaLabel = "Prediction is " + expectedText;
 
         const popoverContent = screen.getByTestId("popover-content");

@@ -4,7 +4,7 @@ import {vi, describe, it, expect} from "vitest";
 import {FixturesListItem} from "@/app/components/fixtures-list/item/FixturesListItem";
 import type {Fixture} from "@/types/types.ts";
 
-import {TEAMS, mockTeamsList, mockMatch, DATE_NOW} from "./moch-data";
+import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./moch-data";
 
 vi.mock("antd", async (importOriginal) => {
     const antd = await importOriginal<typeof import("antd")>();
@@ -27,7 +27,7 @@ vi.mock("@/app/components/fixtures-list/item/ai-prediction/FixturesListItemAiPre
 
 const mockFixture: Fixture = {
     teamId: 0,
-    matches: [mockMatch, {...mockMatch, homeTeam: mockTeamsList[2], awayTeam: mockTeamsList[0]}],
+    matches: [MOCK_MATCH, {...MOCK_MATCH, homeTeam: MOCK_TEAMS_LIST[2], awayTeam: MOCK_TEAMS_LIST[0]}],
     lastUpdated: DATE_NOW
 };
 
@@ -38,21 +38,21 @@ describe("FixturesListItem", () => {
         render(
             <FixturesListItem
                 fixture={mockFixture}
-                teamName={TEAMS[0]}
+                teamName={MOCK_TEAM_NAMES[0]}
                 isLoading={true}
                 onNewPredictionAction={mockOnNewPredictionAction}
             />
         );
 
         expect(screen.getByTestId("skeleton")).toBeInTheDocument();
-        expect(screen.getByText(TEAMS[0])).toBeInTheDocument();
+        expect(screen.getByText(MOCK_TEAM_NAMES[0])).toBeInTheDocument();
     });
 
     it("should render empty message when there are no matches", () => {
         render(
             <FixturesListItem
                 fixture={{teamId: 1, matches: [], lastUpdated: DATE_NOW}}
-                teamName={TEAMS[1]}
+                teamName={MOCK_TEAM_NAMES[1]}
                 isLoading={false}
                 onNewPredictionAction={mockOnNewPredictionAction}
             />
@@ -67,7 +67,7 @@ describe("FixturesListItem", () => {
         render(
             <FixturesListItem
                 fixture={mockFixture}
-                teamName={TEAMS[0]}
+                teamName={MOCK_TEAM_NAMES[0]}
                 isLoading={false}
                 onNewPredictionAction={mockOnNewPredictionAction}
             />
@@ -75,24 +75,24 @@ describe("FixturesListItem", () => {
 
         // Check for main team
         expect(
-            screen.getByRole("heading", {name: TEAMS[0]})
+            screen.getByRole("heading", {name: MOCK_TEAM_NAMES[0]})
         ).toBeInTheDocument();
 
         // Check for first match
         expect(
-            screen.getByRole("heading", {name: TEAMS[1]})
+            screen.getByRole("heading", {name: MOCK_TEAM_NAMES[1]})
         ).toBeInTheDocument();
-        expect(screen.getByAltText(`${TEAMS[1]} logo`)).toBeInTheDocument();
+        expect(screen.getByAltText(`${MOCK_TEAM_NAMES[1]} logo`)).toBeInTheDocument();
         expect(screen.getByText("H")).toBeInTheDocument();
-        expect(screen.getByText("H")).toHaveAttribute("aria-label", `${TEAMS[1]} Home game`);
+        expect(screen.getByText("H")).toHaveAttribute("aria-label", `${MOCK_TEAM_NAMES[1]} Home game`);
 
         // Check for second match
         expect(
-            screen.getByRole("heading", {name: TEAMS[2]})
+            screen.getByRole("heading", {name: MOCK_TEAM_NAMES[2]})
         ).toBeInTheDocument();
-        expect(screen.getByAltText(`${TEAMS[2]} logo`)).toBeInTheDocument();
+        expect(screen.getByAltText(`${MOCK_TEAM_NAMES[2]} logo`)).toBeInTheDocument();
         expect(screen.getByText("A")).toBeInTheDocument();
-        expect(screen.getByText("A")).toHaveAttribute("aria-label", `${TEAMS[2]} Away game`);
+        expect(screen.getByText("A")).toHaveAttribute("aria-label", `${MOCK_TEAM_NAMES[2]} Away game`);
 
         // Check children are rendered
         expect(screen.getAllByTestId("list-item-date")).toHaveLength(2);
