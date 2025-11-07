@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import {render, screen} from "@testing-library/react";
+import {vi, describe, it, expect, beforeEach} from "vitest";
 
-import { FixturesListItemDate } from "@/app/components/fixtures-list/item/date/FixturesListItemDate";
+import {FixturesListItemDate} from "@/app/components/fixtures-list/item/date/FixturesListItemDate";
 import * as dateParse from "@/helpers/date-parse";
 
 vi.mock("@/helpers/date-parse", () => ({
@@ -12,7 +12,7 @@ vi.mock("antd", async (importOriginal) => {
     const antd = await importOriginal<typeof import("antd")>();
     return {
         ...antd,
-        Popover: vi.fn(({ title, content, children }) => (
+        Popover: vi.fn(({title, content, children}) => (
             <div data-testid="popover" data-title={title} data-content={content}>
                 {children}
             </div>
@@ -21,7 +21,7 @@ vi.mock("antd", async (importOriginal) => {
 });
 
 vi.mock("@ant-design/icons", () => ({
-    CalendarOutlined: vi.fn(() => <span data-testid="calendar-icon" />),
+    CalendarOutlined: vi.fn(() => <span data-testid="calendar-icon"/>),
 }));
 
 describe("FixturesListItemDate", () => {
@@ -33,7 +33,7 @@ describe("FixturesListItemDate", () => {
 
     it("should call utcDateToLocal and render popover with correct date and time", () => {
         const testDate = "2025-11-07T02:00:00Z";
-        render(<FixturesListItemDate utcDate={testDate} />);
+        render(<FixturesListItemDate utcDate={testDate}/>);
 
         // Check if helper was called
         expect(mockedUtcDateToLocal).toHaveBeenCalledWith(testDate);
@@ -49,7 +49,7 @@ describe("FixturesListItemDate", () => {
 
     it("should handle initial empty state before useEffect runs", () => {
         mockedUtcDateToLocal.mockReturnValue(["", ""]); // Simulate initial state
-        render(<FixturesListItemDate utcDate="2025-11-07T02:00:00Z" />);
+        render(<FixturesListItemDate utcDate="2025-11-07T02:00:00Z"/>);
 
         const popover = screen.getByTestId("popover");
         expect(popover).toHaveAttribute("data-title", "");

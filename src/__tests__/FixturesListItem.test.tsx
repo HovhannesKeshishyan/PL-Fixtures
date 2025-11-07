@@ -2,7 +2,9 @@ import {render, screen} from "@testing-library/react";
 import {vi, describe, it, expect} from "vitest";
 
 import {FixturesListItem} from "@/app/components/fixtures-list/item/FixturesListItem";
-import type {Fixture, Match, Team} from "@/types/types.ts";
+import type {Fixture} from "@/types/types.ts";
+
+import {TEAMS, mockTeamsList, mockMatch, DATE_NOW} from "./moch-data";
 
 vi.mock("next/image", () => ({
     default: vi.fn(({alt}) => <img alt={alt}/>),
@@ -26,29 +28,6 @@ vi.mock("@/app/components/fixtures-list/item/ai-prediction/FixturesListItemAiPre
         <div data-testid="list-item-ai-prediction"/>
     )),
 }));
-
-const TEAMS = ["Liverpool", "Manchester City", "Arsenal"];
-
-const mockTeamsList: Team[] = TEAMS.map((teamName, index) => {
-    return {
-        id: index,
-        name: teamName,
-        shortName: "",
-        crest: ""
-    }
-});
-
-const DATE_NOW = Date.now();
-
-const mockMatch: Match = {
-    id: 101,
-    uuid: "101-1-2",
-    utcDate: "2025-10-26T14:00:00Z",
-    homeTeam: mockTeamsList[0],
-    awayTeam: mockTeamsList[1],
-    lastUpdated: "",
-    aiPrediction: {score: "", lastUpdated: ""}
-};
 
 const mockFixture: Fixture = {
     teamId: 0,

@@ -6,7 +6,9 @@ import {FixturesListItem} from "@/app/components/fixtures-list/item/FixturesList
 
 import * as services from "@/services/index";
 
-import type {Fixture, Team, Match} from "@/types/types.ts";
+import type {Fixture} from "@/types/types.ts";
+
+import {TEAMS, mockTeamsList, mockMatch, DATE_NOW} from "./moch-data";
 
 vi.mock("@/app/components/fixtures-list/item/FixturesListItem", () => ({
     FixturesListItem: vi.fn(() => <div data-testid="fixtures-list-item"/>),
@@ -25,29 +27,6 @@ vi.mock("antd", async (importOriginal) => {
         Alert: vi.fn(({message}) => <div data-testid="alert">{message}</div>),
     };
 });
-
-const TEAMS = ["Liverpool", "Manchester City", "Arsenal"];
-
-const mockTeamsList: Team[] = TEAMS.map((teamName, index) => {
-    return {
-        id: index,
-        name: teamName,
-        shortName: "",
-        crest: ""
-    }
-})
-
-const DATE_NOW = Date.now();
-
-const mockMatch: Match = {
-    id: 101,
-    uuid: "101-1-2",
-    utcDate: "2025-10-26T14:00:00Z",
-    homeTeam: mockTeamsList[0],
-    awayTeam: mockTeamsList[1],
-    aiPrediction: null,
-    lastUpdated: ""
-};
 
 // Use structuredClone to prevent test pollution
 const getMockFixtures = (ids: number[]): Fixture[] => {
