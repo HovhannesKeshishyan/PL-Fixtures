@@ -9,6 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "git-branch-cleanup": "git branch -r --merged main | ForEach-Object { $_.Trim() -replace 'origin/', '' } | Where-Object { $_ -ne 'main' } | ForEach-Object { git push origin --delete $_ }"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/coverage-v8": "^4.0.8",
     "@vitest/ui": "^4.0.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
