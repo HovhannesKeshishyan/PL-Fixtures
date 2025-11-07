@@ -50,7 +50,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
         setPredictionIsLoading(false);
     }
 
-    let content = null;
+    let content;
     if (prediction) content = <span>{prediction}</span>
     else if (predictionIsLoading) {
         content = <span>Loading prediction...</span>
@@ -63,7 +63,8 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
                     variant="outlined"
                     onClick={getPrediction}
                     loading={predictionIsLoading}
-                    disabled={predictionIsLoading}>Get AI prediction</Button>
+                    disabled={predictionIsLoading}
+                    data-test-id="get-ai-prediction-btn">Get AI prediction</Button>
         </div>
     }
 
@@ -79,7 +80,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
         <Flex align="center" justify="center" className={styles.aiPrediction} aria-label={ariaLabel}>
             <Popover content={content} trigger={["hover", "click"]} afterOpenChange={handleOpenChange}>
                 <button type="button">
-                    <OpenAIOutlined/>
+                    <OpenAIOutlined data-testid="ai-prediction-icon"/>
                 </button>
             </Popover>
         </Flex>

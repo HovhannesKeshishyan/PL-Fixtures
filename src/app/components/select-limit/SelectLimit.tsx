@@ -26,6 +26,7 @@ export const SelectLimit: FC<Props> = ({limit, onLimitChange}) => {
                 onChange={onLimitChange}
                 options={limitOptions}
                 aria-label="Select fixtures limit"
+                data-testid="select-limit"
             />
         </div>
     );

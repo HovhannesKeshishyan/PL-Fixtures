@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "git-branch-cleanup": "git branch -r --merged main | ForEach-Object { $_.Trim() -replace 'origin/', '' } | Where-Object { $_ -ne 'main' } | ForEach-Object { git push origin --delete $_ }"
   },
   "dependencies": {
@@ -20,13 +23,21 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "jsdom": "^27.1.0",
     "sass": "^1.83.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.7"
   }
 }

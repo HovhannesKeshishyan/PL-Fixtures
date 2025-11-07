@@ -10,7 +10,7 @@ interface SocialMedia {
     icon: ForwardRefExoticComponent<Omit<AntdIconProps, "ref">>;
 }
 
-const socialLinks: SocialMedia[] = [
+export const socialLinks: SocialMedia[] = [
     {
         name: "Linkedin",
         href: "https://www.linkedin.com/in/hovhannes-keshishyan",
