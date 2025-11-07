@@ -26,6 +26,7 @@ export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => 
                 }
                 }
                 aria-label="search team"
+                data-testid="select-teams"
             >
                 {teams.map(team => {
                     return (
