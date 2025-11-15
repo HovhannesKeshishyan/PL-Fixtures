@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
                 hostname: "crests.football-data.org",
             }
         ]
-    }
+    },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === "production",
+    },
 };
 
 export default nextConfig;
