@@ -16,6 +16,6 @@ export const getAllFixtures = async (payload: AllFixturesPayload): Promise<Fixtu
 }
 
 export const getScorePrediction = async (payload: ScorePredictionPayload) => {
-    const {data} = await axios.post<Prediction>(`${BASE_URL}/api/v2/predict-scores`, payload);
+    const {data} = await axios.post<Prediction>(`${BASE_URL}/api/v1/predict-scores`, payload);
     return data;
 }
