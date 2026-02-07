@@ -6,16 +6,16 @@ const BASE_URL_PROD = "https://pl-fixtures-backend.vercel.app";
 const BASE_URL = process.env.NEXT_PUBLIC_MODE === "production" ? BASE_URL_PROD : BASE_URL_DEV;
 
 export const getTeamsList = async (): Promise<Team[]> => {
-    const {data} = await axios.get<Team[]>(`${BASE_URL}/api/teams`);
+    const {data} = await axios.get<Team[]>(`${BASE_URL}/api/v1/teams`);
     return data;
 }
 
 export const getAllFixtures = async (payload: AllFixturesPayload): Promise<Fixture[]> => {
-    const {data} = await axios.post<Fixture[]>(`${BASE_URL}/api/fixtures`, payload);
+    const {data} = await axios.post<Fixture[]>(`${BASE_URL}/api/v1/fixtures`, payload);
     return data;
 }
 
 export const getScorePrediction = async (payload: ScorePredictionPayload) => {
-    const {data} = await axios.post<Prediction>(`${BASE_URL}/api/predict-scores`, payload);
+    const {data} = await axios.post<Prediction>(`${BASE_URL}/api/v2/predict-scores`, payload);
     return data;
 }
