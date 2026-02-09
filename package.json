@@ -1,43 +1,44 @@
 {
   "name": "premier-league-fixtures",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "test": "vitest",
-    "test:coverage": "vitest --coverage",
-    "git-branch-cleanup": "git branch -r --merged main | ForEach-Object { $_.Trim() -replace 'origin/', '' } | Where-Object { $_ -ne 'main' } | ForEach-Object { git push origin --delete $_ }"
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@ant-design/nextjs-registry": "^1.0.2",
-    "antd": "^5.23.2",
+    "@ant-design/nextjs-registry": "^1.3.0",
+    "antd": "^6.2.3",
     "axios": "^1.13.1",
     "js-cookie": "^3.0.5",
-    "next": "^15.1.6",
+    "next": "^16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.3",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.0",
-    "@vitest/coverage-v8": "^4.0.8",
-    "@vitest/ui": "^4.0.7",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.6",
-    "jsdom": "^27.1.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/ui": "^4.0.18",
+    "baseline-browser-mapping": "^2.9.19",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "jsdom": "^28.0.0",
+    "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.83.4",
     "typescript": "^5",
-    "vitest": "^4.0.7"
+    "vitest": "^4.0.18"
   }
 }
