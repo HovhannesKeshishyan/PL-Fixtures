@@ -1,5 +1,4 @@
-"use client"
-import {type FC, useEffect, useState} from "react";
+import type {FC} from "react";
 import {Popover} from "antd";
 import {CalendarOutlined} from "@ant-design/icons";
 
@@ -12,14 +11,7 @@ interface Props {
 }
 
 export const FixturesListItemDate: FC<Props> = ({utcDate}) => {
-    const [localDate, setLocalDate] = useState<string>("");
-    const [localTime, setLocalTime] = useState<string>("");
-
-    useEffect(() => {
-        const [localDate, localTime] = utcDateToLocal(utcDate)
-        setLocalDate(localDate);
-        setLocalTime(localTime)
-    }, [utcDate]);
+    const [localDate, localTime] = utcDateToLocal(utcDate);
 
     return (
         <div className={styles.fixturesListItemDate}>
