@@ -1,5 +1,6 @@
 import type {FC} from "react";
 import {Select} from "antd";
+import type {DefaultOptionType} from "@rc-component/select/es/Select";
 
 import type {Team} from "@/types/types.ts";
 import styles from "./SelectTeams.module.scss";
@@ -11,6 +12,18 @@ interface Props {
 }
 
 export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => {
+    const filterOption = (inputValue: string, option: DefaultOptionType | undefined) => {
+        return option?.labelLower.startsWith(inputValue.toLocaleLowerCase());
+    }
+
+    const options = teams.map(team => {
+        return {
+            value: team.id,
+            label: team.name,
+            labelLower: team.name.toLocaleLowerCase()
+        }
+    })
+
     return (
         <div className={styles.selectTeams}>
             <Select
@@ -20,24 +33,11 @@ export const SelectTeams: FC<Props> = ({teams, selectedTeams, onTeamSelect}) => 
                 value={selectedTeams}
                 placeholder="Please select"
                 onChange={onTeamSelect}
-                filterOption={(inputValue, option) => {
-                    const optionValue: string = option?.["data-search-value"].toLowerCase();
-                    return optionValue.startsWith(inputValue.toLowerCase());
-                }
-                }
+                showSearch={{filterOption}}
                 aria-label="search team"
                 data-testid="select-teams"
-            >
-                {teams.map(team => {
-                    return (
-                        <Select.Option value={team.id}
-                                       data-search-value={team.name}
-                                       key={team.id}>
-                            <span>{team.name}</span>
-                        </Select.Option>
-                    )
-                })}
-            </Select>
+                options={options}
+            />
         </div>
     );
 }

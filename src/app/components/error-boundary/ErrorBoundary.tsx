@@ -31,12 +31,12 @@ export class ErrorBoundary extends Component<Props, State> {
     }
 
     render() {
-        const message = this.state.error?.message || "Something went wrong"
+        const title = this.state.error?.message || "Something went wrong"
         if (this.state.hasError) {
             return (
                 <Flex vertical align="center" gap={20}>
                     <Alert type="error"
-                           message={message}
+                           title={title}
                            showIcon={true}
                            className={styles.title}
                            description="Please try again later."

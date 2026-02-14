@@ -84,8 +84,8 @@ export const FixturesList: FC<Props> = ({teamsList, limit, selectedTeams}) => {
 
     if (!selectedTeams?.length) {
         return (
-            <div className={styles.emptyResultsWrapper}>
-                <Alert message="Please select team to see fixtures" type="warning" showIcon/>
+            <div className={styles.emptyResultsWrapper} data-testid="empty-teams-list-alert">
+                <Alert title="Please select team to see fixtures" type="warning" showIcon/>
             </div>
         )
     }

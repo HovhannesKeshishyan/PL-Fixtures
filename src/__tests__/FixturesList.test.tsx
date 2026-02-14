@@ -57,9 +57,8 @@ describe("FixturesList", () => {
         render(
             <FixturesList teamsList={MOCK_TEAMS_LIST} limit="all" selectedTeams={[]}/>
         );
-        expect(
-            screen.getByText("Please select team to see fixtures")
-        ).toBeInTheDocument();
+        const emptyTeamsListAlert = screen.queryByTestId("empty-teams-list-alert");
+        expect(emptyTeamsListAlert).toBeInTheDocument();
         expect(mockedGetAllFixtures).not.toHaveBeenCalled();
     });
 

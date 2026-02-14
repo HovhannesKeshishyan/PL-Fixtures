@@ -64,7 +64,7 @@ export const FixturesListItemAiPrediction: FC<Props> = ({match, onNewPredictionA
                     onClick={getPrediction}
                     loading={predictionIsLoading}
                     disabled={predictionIsLoading}
-                    data-test-id="get-ai-prediction-btn">Get AI prediction</Button>
+                    data-testid="get-ai-prediction-btn">Get AI prediction</Button>
         </div>
     }
 
