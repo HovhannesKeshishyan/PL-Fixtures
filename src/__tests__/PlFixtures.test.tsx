@@ -6,7 +6,7 @@ import {PlFixtures} from "@/widgets/pl-fixtures";
 
 import type {FixturesLimit} from "@/shared/types";
 
-import {MOCK_SELECTED_TEAMS_IDS, MOCK_TEAMS_LIST} from "./moch-data";
+import {MOCK_SELECTED_TEAMS_IDS, MOCK_TEAMS_LIST} from "./mock-data";
 
 const mockCookies = vi.hoisted(() => ({
     get: vi.fn(),

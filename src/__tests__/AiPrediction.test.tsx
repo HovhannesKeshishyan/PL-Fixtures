@@ -9,7 +9,7 @@ import {getScorePrediction} from "@/features/ai-prediction/api/getPrediction";
 
 import type {Match, Prediction} from "@/shared/types";
 
-import {MOCK_MATCH, MOCK_TEAM_NAMES} from "./moch-data";
+import {MOCK_MATCH, MOCK_TEAM_NAMES} from "./mock-data";
 
 
 vi.mock("@/features/ai-prediction/api/getPrediction", () => ({

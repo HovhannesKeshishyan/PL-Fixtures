@@ -8,7 +8,7 @@ import * as services from "@/entities/fixture/api/getFixtures";
 
 import type {Fixture} from "@/shared/types";
 
-import {MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW, MOCK_SELECTED_TEAMS_IDS} from "./moch-data";
+import {MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW, MOCK_SELECTED_TEAMS_IDS} from "./mock-data";
 
 vi.mock("@/entities/fixture/ui/item/FixturesListItem", () => ({
     FixturesListItem: vi.fn(() => <div data-testid="fixtures-list-item"/>),

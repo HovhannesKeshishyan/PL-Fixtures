@@ -5,7 +5,7 @@ import {FixturesListItem} from "@/entities/fixture/ui/item/FixturesListItem";
 
 import type {Fixture} from "@/shared/types";
 
-import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./moch-data";
+import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./mock-data";
 
 const MOCK_MATCH_2 = {...MOCK_MATCH, homeTeam: MOCK_TEAMS_LIST[2], awayTeam: MOCK_TEAMS_LIST[0]}
 
