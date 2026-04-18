@@ -44,7 +44,7 @@ export const AiPrediction: FC<Props> = ({match, onNewPredictionAction}) => {
             const newPrediction = await getScorePrediction(payloadData);
             onNewPredictionAction(newPrediction, match.uuid);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setPredictionError(true);
         }
         setPredictionIsLoading(false);
