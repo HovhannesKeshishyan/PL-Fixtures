@@ -2,7 +2,7 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {vi, describe, it, beforeEach, expect} from "vitest";
 
 import Cookies from "js-cookie";
-import {CookieBanner} from "@/app/components/cookie-banner/CookieBanner";
+import {CookieConsent} from "@/features/cookie-consent";
 
 vi.mock("js-cookie", () => ({
     default: {
@@ -10,13 +10,13 @@ vi.mock("js-cookie", () => ({
     },
 }));
 
-describe("CookieBanner", () => {
+describe("CookieConsent", () => {
     beforeEach(() => {
         vi.clearAllMocks();
     });
 
     it("renders banner with text and buttons", () => {
-        render(<CookieBanner/>);
+        render(<CookieConsent/>);
 
         const text = screen.queryByTestId("cookie-text");
         const acceptBtn = screen.queryByTestId("cookie-btn-accept");
@@ -28,7 +28,7 @@ describe("CookieBanner", () => {
     });
 
     it("sets cookie and hides banner when Accept is clicked", () => {
-        render(<CookieBanner/>);
+        render(<CookieConsent/>);
 
         const acceptBtn = screen.queryByTestId("cookie-btn-accept");
         if (acceptBtn) {
@@ -45,7 +45,7 @@ describe("CookieBanner", () => {
     });
 
     it("hides banner without setting cookie when Reject is clicked", () => {
-        render(<CookieBanner/>);
+        render(<CookieConsent/>);
 
         const rejectBtn = screen.queryByTestId("cookie-btn-reject");
         if (rejectBtn) {

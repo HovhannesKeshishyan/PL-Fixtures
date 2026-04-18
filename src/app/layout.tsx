@@ -1,5 +1,4 @@
 import {AntdRegistry} from "@ant-design/nextjs-registry";
-
 import {ConfigProvider} from "antd";
 
 import type {Metadata, Viewport} from "next";
@@ -7,12 +6,11 @@ import type {ReactNode} from "react";
 
 import {Inter} from "next/font/google";
 
-import {Header} from "@/app/components/header/Header";
-import {Footer} from "@/app/components/footer/Footer";
+import {siteUrl, metaTitle, metaDescription, OGImageUrl} from "@/shared/config/metadata";
+import {AntDesignConfigProvider} from "@/shared/config/ant-design-theme-config";
 
-import {siteUrl, metaTitle, metaDescription, OGImageUrl} from "@/constants/metadata";
-import {AntDesignConfigProvider} from "@/constants/ant-design-theme-config";
-
+import {Header} from "@/widgets/header";
+import {Footer} from "@/widgets/footer";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 

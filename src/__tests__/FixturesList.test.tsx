@@ -1,22 +1,21 @@
 import {render, screen, act} from "@testing-library/react";
 import {vi, describe, it, expect, beforeEach, afterEach} from "vitest";
 
-import {FixturesList} from "@/app/components/fixtures-list/FixturesList";
-import {FixturesListItem} from "@/app/components/fixtures-list/item/FixturesListItem";
+import {FixturesList} from "@/entities/fixture";
+import {FixturesListItem} from "@/entities/fixture/ui/item/FixturesListItem";
 
-import * as services from "@/services/index";
+import * as services from "@/entities/fixture/api/getFixtures";
 
-import type {Fixture} from "@/types/types.ts";
+import type {Fixture} from "@/shared/types";
 
-import {MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW, MOCK_SELECTED_TEAMS_IDS} from "./moch-data";
+import {MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW, MOCK_SELECTED_TEAMS_IDS} from "./mock-data";
 
-vi.mock("@/app/components/fixtures-list/item/FixturesListItem", () => ({
+vi.mock("@/entities/fixture/ui/item/FixturesListItem", () => ({
     FixturesListItem: vi.fn(() => <div data-testid="fixtures-list-item"/>),
 }));
 
-vi.mock("@/services", () => ({
-    getAllFixtures: vi.fn(),
-    getScorePrediction: vi.fn(),
+vi.mock("@/entities/fixture/api/getFixtures.ts", () => ({
+    getAllFixtures: vi.fn()
 }));
 
 vi.mock("antd", async (importOriginal) => {

@@ -1,9 +1,9 @@
 import {render, screen, fireEvent, cleanup} from "@testing-library/react";
 import {describe, it, expect, vi} from "vitest";
 
-import {SelectLimit} from "@/app/components/select-limit/SelectLimit";
+import {SelectLimit} from "@/features/select-limit";
 
-import {FixturesLimit} from "@/types/types";
+import {FixturesLimit} from "@/shared/types";
 
 describe("SelectLimit", () => {
 

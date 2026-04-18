@@ -1,0 +1,1 @@
+export {AiPrediction} from "./ui/AiPrediction";

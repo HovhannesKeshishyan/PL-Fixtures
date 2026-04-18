@@ -1,0 +1,1 @@
+export {FixturesList} from "./ui/FixturesList";

@@ -1,0 +1,14 @@
+@use "@/shared/assets/styles/_breakpoints";
+
+.selectTeams {
+  width: 100%;
+  padding: 0 4rem;
+
+  @media screen and (max-width: breakpoints.$phone) {
+    padding: 0 2rem;
+  }
+
+  .antSelect {
+    width: 100%;
+  }
+}

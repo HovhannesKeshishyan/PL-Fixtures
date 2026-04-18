@@ -1,7 +1,7 @@
 import {render, screen, fireEvent} from "@testing-library/react";
 import {it, describe, expect} from "vitest";
 
-import {ErrorBoundary} from "@/app/components/error-boundary/ErrorBoundary";
+import {ErrorBoundary} from "@/shared/ui/error-boundary/ErrorBoundary";
 
 const TEST_ERROR_MESSAGE = "OOPS ERROR MESSAGE";
 

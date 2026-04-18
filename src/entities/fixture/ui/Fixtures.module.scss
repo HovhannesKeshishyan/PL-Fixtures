@@ -1,0 +1,17 @@
+@use "@/shared/assets/styles/_breakpoints";
+
+.fixtures {
+  padding: 0 4rem;
+
+  @media screen and (max-width: breakpoints.$phone) {
+    padding: 0 2rem;
+  }
+}
+
+.emptyResultsWrapper {
+  margin: 0 4rem;
+
+  @media screen and (max-width: breakpoints.$phone) {
+    margin: 0 2rem;
+  }
+}

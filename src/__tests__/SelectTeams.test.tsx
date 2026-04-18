@@ -1,8 +1,8 @@
 import {render, screen, fireEvent} from "@testing-library/react";
 import {describe, it, expect, vi} from "vitest";
-import {SelectTeams} from "@/app/components/select-teams/SelectTeams";
+import {SelectTeams} from "@/features/select-teams";
 
-import {MOCK_TEAMS_LIST} from "./moch-data";
+import {MOCK_TEAMS_LIST} from "./mock-data";
 
 describe("SelectTeams", () => {
     it("renders with placeholder and all team options", async () => {
