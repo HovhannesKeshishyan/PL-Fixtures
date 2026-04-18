@@ -162,7 +162,7 @@ describe("FixturesListItemAiPrediction", () => {
 
     it("should show an error message if the prediction fetch fails", async () => {
         // Mock the API call to reject
-        const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => {
+        const consoleLogSpy = vi.spyOn(console, "error").mockImplementation(() => {
         });
         mockedGetScorePrediction.mockRejectedValue(new Error("API Error"));
 
