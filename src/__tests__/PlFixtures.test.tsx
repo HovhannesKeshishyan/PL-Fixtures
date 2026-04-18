@@ -2,9 +2,9 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom";
 
-import PlFixtures from "@/app/components/pl-fixtures/PlFixtures";
+import {PlFixtures} from "@/widgets/pl-fixtures";
 
-import type {FixturesLimit} from "@/types/types";
+import type {FixturesLimit} from "@/shared/types";
 
 import {MOCK_SELECTED_TEAMS_IDS, MOCK_TEAMS_LIST} from "./moch-data";
 
@@ -24,7 +24,7 @@ vi.mock("js-cookie", () => ({
 
 // Mock all child components
 // This allows us to verify that the props are passed correctly and simulate user interaction.
-vi.mock("@/app/components/select-teams/SelectTeams", () => ({
+vi.mock("@/features/select-teams", () => ({
     SelectTeams: vi.fn(({selectedTeams, onTeamSelect}) => (
         <div data-testid="SelectTeams" data-selected-teams={selectedTeams.join(",")}>
             <button onClick={() => onTeamSelect(UPDATED_TEAMS_IDS)}>Change Teams</button>
@@ -32,7 +32,7 @@ vi.mock("@/app/components/select-teams/SelectTeams", () => ({
     )),
 }));
 
-vi.mock("@/app/components/select-limit/SelectLimit", () => ({
+vi.mock("@/features/select-limit", () => ({
     SelectLimit: vi.fn(({limit, onLimitChange}) => (
         <div data-testid="SelectLimit" data-limit={limit}>
             <button onClick={() => onLimitChange(LIMIT_2)}>Change Limit</button>
@@ -40,7 +40,7 @@ vi.mock("@/app/components/select-limit/SelectLimit", () => ({
     )),
 }));
 
-vi.mock("@/app/components/fixtures-list/FixturesList", () => ({
+vi.mock("@/entities/fixture", () => ({
     FixturesList: vi.fn(({limit, selectedTeams}) => (
         <div
             data-testid="FixturesList"

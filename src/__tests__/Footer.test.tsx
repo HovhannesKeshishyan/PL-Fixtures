@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 import {describe, it, expect} from "vitest";
 import "@testing-library/jest-dom";
 
-import {Footer, socialLinks} from "@/app/components/footer/Footer";
+import {Footer, socialLinks} from "@/widgets/footer";
 
 describe("Footer", () => {
     it("should render the Contacts heading", () => {

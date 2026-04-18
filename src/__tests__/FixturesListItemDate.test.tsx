@@ -1,11 +1,11 @@
 import {render, screen} from "@testing-library/react";
 import {vi, describe, it, expect, beforeEach} from "vitest";
 
-import {FixturesListItemDate} from "@/app/components/fixtures-list/item/date/FixturesListItemDate";
+import {FixturesListItemDate} from "@/entities/fixture/ui/item/date/FixturesListItemDate";
 
-import * as dateParse from "@/helpers/date-parse";
+import * as dateParse from "@/shared/lib/date";
 
-vi.mock("@/helpers/date-parse", () => ({
+vi.mock("@/shared/lib/date", () => ({
     utcDateToLocal: vi.fn(),
 }));
 

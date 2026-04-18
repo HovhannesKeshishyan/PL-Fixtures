@@ -1,0 +1,11 @@
+@use "@/shared/assets/styles/_breakpoints";
+
+
+.title {
+  min-width: 40rem;
+
+  @media screen and (max-width: breakpoints.$phone) {
+    min-width: unset;
+    width: 80%
+  }
+}

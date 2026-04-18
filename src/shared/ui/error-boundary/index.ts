@@ -1,0 +1,1 @@
+export {WithErrorBoundary} from  "./WithErrorBoundary";

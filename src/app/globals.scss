@@ -1,6 +1,6 @@
-@use "./assets/styles/colors.scss";
-@use "./assets/styles/breackpoints";
-@use "./assets/styles/utils.scss";
+@use "@/shared/assets/styles/_colors";
+@use "@/shared/assets/styles/_breakpoints";
+@use "@/shared/assets/styles/_utils";
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

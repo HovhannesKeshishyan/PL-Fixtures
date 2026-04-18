@@ -1,0 +1,34 @@
+@use "@/shared/assets/styles/_breakpoints";
+
+.cookieBanner {
+  position: fixed;
+  z-index: 1001;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+
+  .cookieBannerContent {
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 10rem;
+    padding: 2rem;
+  }
+
+  .cookieDescription {
+    font-size: 1.8rem;
+  }
+
+  @media screen and (max-width: breakpoints.$tablet-large) {
+    .cookieBannerContent {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$phone) {
+    .cookieBannerButtons {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}

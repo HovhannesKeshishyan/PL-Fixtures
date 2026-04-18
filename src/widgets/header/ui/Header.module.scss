@@ -1,0 +1,17 @@
+@use "@/shared/assets/styles/_colors";
+@use "@/shared/assets/styles/_breakpoints";
+
+.header {
+  padding: 2rem 2rem 0 2rem;
+  text-align: center;
+
+  h1 {
+    color: colors.$primary;
+    font-size: 4rem;
+
+    @media screen and (max-width: breakpoints.$phone) {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+}

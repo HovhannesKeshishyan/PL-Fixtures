@@ -1,4 +1,4 @@
-import type {Match, Team} from "@/types/types";
+import type {Match, Team} from "@/shared/types";
 
 export const MOCK_TEAM_NAMES = ["Liverpool", "Manchester City", "Arsenal"];
 

@@ -1,9 +1,9 @@
 import {render, screen} from "@testing-library/react";
 import {vi, describe, it, expect} from "vitest";
 
-import {FixturesListItem} from "@/app/components/fixtures-list/item/FixturesListItem";
+import {FixturesListItem} from "@/entities/fixture/ui/item/FixturesListItem";
 
-import type {Fixture} from "@/types/types.ts";
+import type {Fixture} from "@/shared/types";
 
 import {MOCK_TEAM_NAMES, MOCK_TEAMS_LIST, MOCK_MATCH, DATE_NOW} from "./moch-data";
 
@@ -20,12 +20,12 @@ vi.mock("antd", async (importOriginal) => {
     };
 });
 
-vi.mock("@/app/components/fixtures-list/item/date/FixturesListItemDate", () => ({
+vi.mock("@/entities/fixture/ui/item/date/FixturesListItemDate", () => ({
     FixturesListItemDate: vi.fn(() => <div data-testid="list-item-date"/>),
 }));
 
-vi.mock("@/app/components/fixtures-list/item/ai-prediction/FixturesListItemAiPrediction", () => ({
-    FixturesListItemAiPrediction: vi.fn(() => (
+vi.mock("@/features/ai-prediction", () => ({
+    AiPrediction: vi.fn(() => (
         <div data-testid="list-item-ai-prediction"/>
     )),
 }));

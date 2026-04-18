@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 import {describe, it, expect} from "vitest";
 import "@testing-library/jest-dom";
 
-import {Header} from "@/app/components/header/Header";
+import {Header} from "@/widgets/header";
 
 describe("Header", () => {
     it("should render the component with the correct heading text", () => {

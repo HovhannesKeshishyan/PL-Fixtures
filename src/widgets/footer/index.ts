@@ -1,0 +1,1 @@
+export {Footer, socialLinks} from "./ui/Footer";
