@@ -1,0 +1,20 @@
+@use "@/shared/assets/styles/_breakpoints";
+
+.privacyPolicy {
+  margin: 0 auto;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.6rem;
+
+  ul {
+    margin-left: 2rem;
+  }
+
+  .sectionName {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
