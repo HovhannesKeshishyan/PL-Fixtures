@@ -1,0 +1,73 @@
+@use "sass:color";
+@use "@/shared/assets/styles/_colors";
+@use "@/shared/assets/styles/_breakpoints";
+
+$shadow-color: color.adjust(colors.$primary, $lightness: -30%);
+
+
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  .error404 {
+    font-size: 15rem;
+    color: colors.$primary;
+    text-shadow: 1px 1px 1px $shadow-color,
+    2px 2px 1px $shadow-color,
+    3px 3px 1px $shadow-color,
+    4px 4px 1px $shadow-color,
+    5px 5px 1px $shadow-color,
+    6px 6px 1px $shadow-color,
+    7px 7px 1px $shadow-color,
+    8px 8px 1px $shadow-color,
+    25px 25px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .error404,
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  .error404 {
+    line-height: 20rem;
+  }
+
+  .message {
+    margin: 2rem 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: colors.$white;
+  }
+
+  a {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem 0.6rem;
+    transition: all 0.2s linear;
+    background-color: colors.$white;
+    color: colors.$black;
+    border-radius: 0.8rem;
+
+    &:hover {
+      background-color: colors.$black;
+      color: colors.$white;
+    }
+  }
+
+  @media only screen and (max-width: breakpoints.$phone-small) {
+    .error404 {
+      font-size: 10rem;
+    }
+
+    .message {
+      font-size: 1.8rem;
+    }
+  }
+}
