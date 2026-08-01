@@ -30,8 +30,13 @@
     background-color: colors.$black;
     color: colors.$white;
     padding: 1.5rem;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 1.8rem;
+
+    a {
+      color: colors.$white;
+      text-underline-offset: 0.4rem;
+    }
   }
 
   .socialMedia {

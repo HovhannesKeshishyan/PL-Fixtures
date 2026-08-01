@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type {FC, ForwardRefExoticComponent} from "react";
 import {FacebookFilled, GithubOutlined, LinkedinFilled, XOutlined} from "@ant-design/icons";
 import {type AntdIconProps} from "@ant-design/icons/es/components/AntdIcon";
@@ -54,7 +55,9 @@ export const Footer: FC = () => {
                 </ul>
             </div>
             <div className={`${styles.footerRow} ${styles.footerRow2}`}>
+                <Link href="/privacy-policy">Privacy Policy</Link>
                 <span>© {new Date().getFullYear()}</span>
+                <span>Version {process.env.NEXT_PUBLIC_APP_VERSION}</span>
             </div>
         </footer>
     )
