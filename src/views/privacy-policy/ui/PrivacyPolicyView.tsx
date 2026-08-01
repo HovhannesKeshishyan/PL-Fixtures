@@ -1,4 +1,4 @@
-import {PrivacyPolicy} from "@/entities/privacy-policy";
+import {PrivacyPolicy} from "@/widgets/privacy-policy";
 
 export const PrivacyPolicyView = () => {
     return (
