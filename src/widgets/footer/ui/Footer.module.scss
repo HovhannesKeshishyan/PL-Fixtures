@@ -30,8 +30,14 @@
     background-color: colors.$black;
     color: colors.$white;
     padding: 1.5rem;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 1.8rem;
+    gap: 1rem;
+
+    a {
+      color: colors.$white;
+      text-underline-offset: 0.4rem;
+    }
   }
 
   .socialMedia {
@@ -52,6 +58,11 @@
   @media screen and (max-width: breakpoints.$phone) {
     .footerRow {
       font-size: 2.2rem;
+    }
+
+    .footerRow2 {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 }
