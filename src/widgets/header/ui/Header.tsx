@@ -8,7 +8,7 @@ export const Header: FC = () => {
         <header className={styles.header}>
             <h1>
                 <Link href="/">
-                    Premier League Fixtures
+                    Premier League Results
                 </Link>
             </h1>
         </header>
