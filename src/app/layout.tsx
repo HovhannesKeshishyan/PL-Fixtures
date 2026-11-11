@@ -1,6 +1,8 @@
 import {AntdRegistry} from "@ant-design/nextjs-registry";
 import {ConfigProvider} from "antd";
 
+import {Analytics} from "@vercel/analytics/next";
+
 import type {Metadata, Viewport} from "next";
 import type {ReactNode} from "react";
 
@@ -59,17 +61,18 @@ export default function RootLayout({children}: Props) {
     return (
         <html lang="en">
         <body className={inter.variable}>
-        <div className={styles.mainLayout}>
-            <Header/>
-            <AntdRegistry>
-                <ConfigProvider theme={AntDesignConfigProvider}>
-                    <main>
-                        {children}
-                    </main>
-                </ConfigProvider>
-            </AntdRegistry>
-            <Footer/>
-        </div>
+            <div className={styles.mainLayout}>
+                <Header/>
+                <AntdRegistry>
+                    <ConfigProvider theme={AntDesignConfigProvider}>
+                        <main>
+                            {children}
+                        </main>
+                    </ConfigProvider>
+                </AntdRegistry>
+                <Footer/>
+            </div>
+            <Analytics/>
         </body>
         </html>
     );
