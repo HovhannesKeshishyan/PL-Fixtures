@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type {FC, ForwardRefExoticComponent} from "react";
-import {FacebookFilled, GithubOutlined, LinkedinFilled, XOutlined} from "@ant-design/icons";
+import {GlobalOutlined, LinkedinFilled, GithubOutlined, XOutlined} from "@ant-design/icons";
 import {type AntdIconProps} from "@ant-design/icons/es/components/AntdIcon";
 
 import styles from "./Footer.module.scss";
@@ -13,7 +13,12 @@ interface SocialMedia {
 
 export const socialLinks: SocialMedia[] = [
     {
-        name: "Linkedin",
+        name: "Portfolio",
+        href: "https://keshishyan.vercel.app",
+        icon: GlobalOutlined
+    },
+    {
+        name: "LinkedIn",
         href: "https://www.linkedin.com/in/hovhannes-keshishyan",
         icon: LinkedinFilled
     },
@@ -21,11 +26,6 @@ export const socialLinks: SocialMedia[] = [
         name: "Github",
         href: "https://github.com/HovhannesKeshishyan",
         icon: GithubOutlined
-    },
-    {
-        name: "Facebook",
-        href: "https://www.facebook.com/HovoKeshishyan",
-        icon: FacebookFilled
     },
     {
         name: "X",
